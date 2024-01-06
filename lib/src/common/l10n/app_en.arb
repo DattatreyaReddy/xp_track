@@ -1,0 +1,8 @@
+{
+    "@@locale": "en",
+    "justNow": "Just Now",
+    "nDays": "{n, plural, =1{1 day} other{{n} days}}",
+    "nHours": "{n, plural, =1{1 hr} other{{n} hrs}}",
+    "nMinutes": "{n, plural, =1{1 min} other{{n} mins}}",
+    "nSeconds": "{n, plural, =1{1 sec} other{{n} secs}}"
+}
