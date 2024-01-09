@@ -15,7 +15,7 @@ RouteBase get $homeShellRouteData => ShellRouteData.$route(
       factory: $HomeShellRouteDataExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: '/',
+          path: '/home',
           factory: $HomeRouteExtension._fromState,
         ),
       ],
@@ -30,7 +30,7 @@ extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   String get location => GoRouteData.$location(
-        '/',
+        '/home',
       );
 
   void go(BuildContext context) => context.go(location);

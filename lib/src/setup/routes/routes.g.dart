@@ -7,40 +7,35 @@ part of 'routes.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $setupRoute,
+      $introductionRoute,
     ];
 
-RouteBase get $setupRoute => GoRouteData.$route(
+RouteBase get $introductionRoute => GoRouteData.$route(
       path: '/setup',
-      factory: $SetupRouteExtension._fromState,
+      factory: $IntroductionRouteExtension._fromState,
       routes: [
-        ShellRouteData.$route(
-          navigatorKey: SetupShellRouteData.$navigatorKey,
-          factory: $SetupShellRouteDataExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'user-name',
-              factory: $UserNameRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'currency',
-              factory: $CurrencyRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'bank-account',
-              factory: $BankAccountRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'category',
-              factory: $CategoryRouteExtension._fromState,
-            ),
-          ],
+        GoRouteData.$route(
+          path: 'user-name',
+          factory: $SetupUserNameRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'currency',
+          factory: $SetupCurrencyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'bank-account',
+          factory: $SetupBankAccountRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'category',
+          factory: $SetupCategoryRouteExtension._fromState,
         ),
       ],
     );
 
-extension $SetupRouteExtension on SetupRoute {
-  static SetupRoute _fromState(GoRouterState state) => const SetupRoute();
+extension $IntroductionRouteExtension on IntroductionRoute {
+  static IntroductionRoute _fromState(GoRouterState state) =>
+      const IntroductionRoute();
 
   String get location => GoRouteData.$location(
         '/setup',
@@ -56,13 +51,9 @@ extension $SetupRouteExtension on SetupRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SetupShellRouteDataExtension on SetupShellRouteData {
-  static SetupShellRouteData _fromState(GoRouterState state) =>
-      const SetupShellRouteData();
-}
-
-extension $UserNameRouteExtension on UserNameRoute {
-  static UserNameRoute _fromState(GoRouterState state) => const UserNameRoute();
+extension $SetupUserNameRouteExtension on SetupUserNameRoute {
+  static SetupUserNameRoute _fromState(GoRouterState state) =>
+      const SetupUserNameRoute();
 
   String get location => GoRouteData.$location(
         '/setup/user-name',
@@ -78,8 +69,9 @@ extension $UserNameRouteExtension on UserNameRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $CurrencyRouteExtension on CurrencyRoute {
-  static CurrencyRoute _fromState(GoRouterState state) => const CurrencyRoute();
+extension $SetupCurrencyRouteExtension on SetupCurrencyRoute {
+  static SetupCurrencyRoute _fromState(GoRouterState state) =>
+      const SetupCurrencyRoute();
 
   String get location => GoRouteData.$location(
         '/setup/currency',
@@ -95,9 +87,9 @@ extension $CurrencyRouteExtension on CurrencyRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $BankAccountRouteExtension on BankAccountRoute {
-  static BankAccountRoute _fromState(GoRouterState state) =>
-      const BankAccountRoute();
+extension $SetupBankAccountRouteExtension on SetupBankAccountRoute {
+  static SetupBankAccountRoute _fromState(GoRouterState state) =>
+      const SetupBankAccountRoute();
 
   String get location => GoRouteData.$location(
         '/setup/bank-account',
@@ -113,8 +105,9 @@ extension $BankAccountRouteExtension on BankAccountRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $CategoryRouteExtension on CategoryRoute {
-  static CategoryRoute _fromState(GoRouterState state) => const CategoryRoute();
+extension $SetupCategoryRouteExtension on SetupCategoryRoute {
+  static SetupCategoryRoute _fromState(GoRouterState state) =>
+      const SetupCategoryRoute();
 
   String get location => GoRouteData.$location(
         '/setup/category',

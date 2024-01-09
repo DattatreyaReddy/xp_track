@@ -11,3 +11,23 @@ class IsSetupCompleted extends _$IsSetupCompleted
   @override
   bool? build() => initialize(DBKey.isSetupCompleted);
 }
+
+@riverpod
+class UserName extends _$UserName with SharedPreferenceClient<String> {
+  @override
+  String? build() => initialize(DBKey.userName);
+}
+
+@riverpod
+class SelectedLocale extends _$SelectedLocale
+    with SharedPreferenceClient<String> {
+  @override
+  String? build() => initialize(DBKey.selectedLocale);
+}
+
+@riverpod
+class SelectedCurrency extends _$SelectedCurrency
+    with SharedPreferenceClient<String> {
+  @override
+  String? build() => initialize(DBKey.currency);
+}

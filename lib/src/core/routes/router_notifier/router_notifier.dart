@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../common/utils/extensions/custom_extensions.dart';
 import '../../../home/routes/routes.dart';
 import '../../../setup/routes/routes.dart';
-import '../../controllers/settings_controller.dart';
+import '../../controllers/router_controller.dart';
+import '../../domain/app_config.dart';
+import '../routes.dart';
 
 part 'router_notifier.g.dart';
 
@@ -16,7 +17,7 @@ class RouterNotifier extends _$RouterNotifier implements Listenable {
   @override
   void build() {
     // this watch will rebuild the notifier when the auth state changes
-    ref.watch(isSetupCompletedProvider);
+    ref.watch(appConfigStateProvider);
     ref.listenSelf((_, next) {
       routerListener?.call();
     });
@@ -25,12 +26,18 @@ class RouterNotifier extends _$RouterNotifier implements Listenable {
 
   /// Redirects the user when our authentication changes
   String? redirect(BuildContext context, GoRouterState routerState) {
-    final isSetupCompleted = ref.read(isSetupCompletedProvider);
-    if (isSetupCompleted.ifNull()) {
-      return const HomeRoute().location;
-    } else {
-      return const SetupRoute().location;
-    }
+    final appConfigState = ref.read(appConfigStateProvider);
+    final location = routerState.uri.toString();
+
+    final isSplash = location.contains(const SplashRoute().location);
+    final isSetup = location.contains(const IntroductionRoute().location);
+    final isHome = location.contains(const HomeRoute().location);
+
+    return switch (appConfigState) {
+      SplashState() => isSplash ? null : const SplashRoute().location,
+      HomeState() => isHome ? null : const HomeRoute().location,
+      SetupState() => isSetup ? null : const IntroductionRoute().location,
+    };
   }
 
   /// Adds [GoRouter]'s listener as specified by its [Listenable].

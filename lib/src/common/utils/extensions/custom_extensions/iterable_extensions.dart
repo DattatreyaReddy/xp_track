@@ -38,3 +38,16 @@ extension IterableExtensions<T> on Iterable<T>? {
 extension NullableIterableExtensions<T> on Iterable<T?> {
   Iterable<T> get filterNulls => where((element) => element != null).cast<T>();
 }
+
+extension ListExtensions<T> on List<T> {
+  List<T> insertInBetween(T element) {
+    final newList = <T>[];
+    for (var i = 0; i < length; i++) {
+      newList.add(this[i]);
+      if (i != length - 1) {
+        newList.add(element);
+      }
+    }
+    return newList;
+  }
+}

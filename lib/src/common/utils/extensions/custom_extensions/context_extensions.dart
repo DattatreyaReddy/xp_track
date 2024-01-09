@@ -8,7 +8,7 @@ extension ContextExtensions on BuildContext {
   ///
   get hideKeyboard => FocusScope.of(this).unfocus();
 
-  AppLocalizations? get l10n => AppLocalizations.of(this);
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
 
   ///
   /// accepts a double [scale] and returns scaled sized based on the screen
@@ -199,7 +199,7 @@ extension ContextExtensions on BuildContext {
     //big screen width can display less sizes
     final strictValues = [
       if (deviceWidth >= 1200) desktop, //desktop is allowed
-      if (deviceWidth >= 600) tablet, //tablet is allowed
+      if (deviceWidth >= 720) tablet, //tablet is allowed
       if (deviceWidth >= 300) mobile, //mobile is allowed
       watch, //watch is allowed
     ].whereType<T>();

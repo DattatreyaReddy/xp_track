@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../home/routes/routes.dart' as home;
+import '../../setup/routes/routes.dart' as setup;
+import '../domain/app_config.dart';
 import '../routes/router_notifier/router_notifier.dart';
 import '../routes/routes.dart' as core;
+import 'settings_controller.dart';
 
 part 'router_controller.g.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
-final _shellRouteNavigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
 GoRouter routerConfig(RouterConfigRef ref) {
@@ -25,16 +29,27 @@ GoRouter routerConfig(RouterConfigRef ref) {
     debugLogDiagnostics: true,
     initialLocation: const core.SplashRoute().location,
     routes: [
-      ShellRoute(
-        navigatorKey: _shellRouteNavigatorKey,
-        builder: (context, state, child) {
-          return child;
-        },
-        routes: [
-          ...core.$appRoutes,
-        ],
-      ),
+      ...core.$appRoutes,
+      ...setup.$appRoutes,
+      ...home.$appRoutes,
     ],
     redirect: notifier.redirect,
   );
+}
+
+@riverpod
+class AppConfigState extends _$AppConfigState {
+  @override
+  AppConfig build() {
+    ref.watch(isSetupCompletedProvider);
+    Future.delayed(const Duration(seconds: 1), () {
+      final isSetupCompleted = ref.read(isSetupCompletedProvider);
+      if (isSetupCompleted.ifNull()) {
+        state = AppConfig.home();
+      } else {
+        state = AppConfig.setup();
+      }
+    });
+    return AppConfig.splash();
+  }
 }

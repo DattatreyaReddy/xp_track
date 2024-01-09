@@ -160,4 +160,29 @@ extension NullableStringExtensions on String? {
     if (isBlank) return null;
     return this?.replaceAllMapped(whitespaceRE, (match) => " ");
   }
+
+  Locale? get toLocale {
+    if (isBlank) return null;
+    final String separator;
+    if (this!.contains('-')) {
+      separator = '-';
+    } else if (this!.contains('_')) {
+      separator = '_';
+    } else {
+      return null;
+    }
+    final locale = this!.split(separator);
+    if (locale.length == 1) {
+      return Locale(locale[0]);
+    } else if (locale.length == 2) {
+      return Locale(locale[0], locale[1]);
+    } else if (locale.length == 3) {
+      return Locale.fromSubtags(
+        languageCode: locale[0],
+        scriptCode: locale[1],
+        countryCode: locale[2],
+      );
+    }
+    return null;
+  }
 }

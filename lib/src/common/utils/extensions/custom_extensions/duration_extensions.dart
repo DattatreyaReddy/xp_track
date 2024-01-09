@@ -57,22 +57,22 @@ extension DurationExt on Duration {
 
     if (days == 0 && hours == 0 && minutes == 0) {
       if (showSecs && seconds > 0) {
-        return context.l10n!.nSeconds(seconds);
+        return context.l10n.nSeconds(seconds);
       }
-      return context.l10n!.justNow;
+      return context.l10n.justNow;
     }
 
     var result = negative ? "- " : "";
     if (days > 0) {
-      result += "${context.l10n!.nDays(days)} ";
+      result += "${context.l10n.nDays(days)} ";
     }
     if (hours > 0) {
-      result += "${context.l10n!.nHours(hours)} ";
+      result += "${context.l10n.nHours(hours)} ";
     }
     if (days > 0) {
       return result;
     }
 
-    return "$result${context.l10n!.nMinutes(minutes)}";
+    return "$result${context.l10n.nMinutes(minutes)}";
   }
 }

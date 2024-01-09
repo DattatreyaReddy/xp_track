@@ -7,7 +7,7 @@ import '../presentation/home_shell_screen.dart';
 part 'routes.g.dart';
 
 abstract class _Routes {
-  static const home = '/';
+  static const home = '/home';
 }
 
 final GlobalKey<NavigatorState> homeShellNavigatorKey =

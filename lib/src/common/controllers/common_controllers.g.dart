@@ -22,19 +22,19 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
-String _$driftDbHash() => r'6321e9be4f0bcbb337f1dc55d4f401e06f5eab5e';
+String _$isarClientHash() => r'f528d184818af6d4e5102689a1fd9d16581f5c2d';
 
-/// See also [driftDb].
-@ProviderFor(driftDb)
-final driftDbProvider = AutoDisposeProvider<DriftDb>.internal(
-  driftDb,
-  name: r'driftDbProvider',
+/// See also [isarClient].
+@ProviderFor(isarClient)
+final isarClientProvider = AutoDisposeProvider<Isar>.internal(
+  isarClient,
+  name: r'isarClientProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$driftDbHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$isarClientHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef DriftDbRef = AutoDisposeProviderRef<DriftDb>;
+typedef IsarClientRef = AutoDisposeProviderRef<Isar>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

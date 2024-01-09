@@ -7,6 +7,8 @@ enum DBKey {
   locale('LOCALE', null),
   currency('CURRENCY', null),
   isSetupCompleted('IS_SETUP_COMPLETED', false),
+  userName('USER_NAME', null),
+  selectedLocale('SELECTED_LOCALE', null),
   ;
 
   const DBKey(this._name, this.initial);

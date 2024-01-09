@@ -23,6 +23,19 @@ abstract class AppUtils {
     return elseWrap?.call(child) ?? child;
   }
 
+  static Widget wrapChildrenIf({
+    bool? condition,
+    required Widget Function(List<Widget>) wrap,
+    required Widget Function(List<Widget>) elseWrap,
+    required List<Widget> children,
+  }) {
+    if (condition.ifNull()) {
+      return wrap(children);
+    } else {
+      return elseWrap(children);
+    }
+  }
+
   static T? returnIf<T>(
     bool? condition,
     T value, [

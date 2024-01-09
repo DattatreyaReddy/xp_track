@@ -1,5 +1,5 @@
 {
-    "@@locale": "en",
+    "@@locale": "en_IN",
     "currency": "Currency",
     "enterName": "Enter your name",
     "errorLaunchUrl": "Failed to open!\nCopying \"{url}\" to clipboard",
@@ -12,7 +12,6 @@
     "offline": "offline",
     "offlineAccountInfo": "XpTrack is an offline app. Your data is stored locally on your device. Your data will be lost if you uninstall the app or clear the app data.",
     "openSource": "openSource",
-    "searchCurrency": "Search currency code or name",
     "startSetup": "SETUP",
     "track": "Track",
     "trackYour": "Track your",
