@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 abstract class MaterialColorGenerator {
   MaterialColorGenerator._();
-  static MaterialColor generate(Color color) =>
-      MaterialColor(color.value, {
+  static MaterialColor generate(Color color) => MaterialColor(color.value, {
         50: _tintColor(color, 0.9),
         100: _tintColor(color, 0.8),
         200: _tintColor(color, 0.6),

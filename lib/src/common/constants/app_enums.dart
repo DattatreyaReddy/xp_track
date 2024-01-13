@@ -1,5 +1,1 @@
-enum AppHero {
-  logo,
-  tagline,
-  taglineChips
-}
+enum AppHero { logo, tagline, taglineChips }

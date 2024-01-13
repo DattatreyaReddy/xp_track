@@ -40,8 +40,8 @@ class UpsertAccountDialog extends HookConsumerWidget {
               name: accountName,
               primaryColor: primaryColor,
               secondaryColor: secondaryColor,
-              onIconChanged: (value) => account.value =
-                  account.value.copyWith(icon: value.codePoint),
+              onIconChanged: (value) =>
+                  account.value = account.value.copyWith(icon: value.codePoint),
               onNameChanged: (value) =>
                   account.value = account.value.copyWith(name: value),
             );
@@ -52,8 +52,8 @@ class UpsertAccountDialog extends HookConsumerWidget {
                   account, () => account.value.accountType);
               return AccountTypeSelection(
                 accountType: accountType,
-                onChanged: (value) => account.value =
-                    account.value.copyWith(accountType: value),
+                onChanged: (value) =>
+                    account.value = account.value.copyWith(accountType: value),
               );
             },
           ),
