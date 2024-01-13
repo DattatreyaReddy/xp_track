@@ -1,6 +1,12 @@
 {
     "@@locale": "en",
+    "accounts": "ACCOUNTS",
+    "addAccount": "Add Account",
+    "copiedToClipboard": "Copied to clipboard!",
+    "credit": "Credit",
     "currency": "Currency",
+    "debit": "Debit",
+    "editAccount": "Edit Account",
     "enterName": "Enter your name",
     "errorLaunchUrl": "Failed to open!\nCopying \"{url}\" to clipboard",
     "expenses": "expenses",
@@ -12,10 +18,15 @@
     "offline": "offline",
     "offlineAccountInfo": "XpTrack is an offline app. Your data is stored locally on your device. Your data will be lost if you uninstall the app or clear the app data.",
     "openSource": "openSource",
+    "refresh": "Refresh",
+    "save": "Save",
     "searchCurrency": "Search currency code or name",
+    "somethingWentWrong": "Something went wrong!",
+    "split": "Split",
     "startSetup": "SETUP",
     "track": "Track",
     "trackYour": "Track your",
+    "accountName": "Account Name",
     "userName": "USER NAME",
     "xp": "Xp"
 }

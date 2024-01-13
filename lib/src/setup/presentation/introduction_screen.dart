@@ -3,8 +3,9 @@ import 'package:gap/gap.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../routes/routes.dart';
-import 'widgets/intro_nav_buttons.dart';
-import 'widgets/responsive_intro_widget.dart';
+import '../widgets/intro_nav_buttons.dart';
+import '../widgets/label_text.dart';
+import '../widgets/responsive_intro_widget.dart';
 
 class IntroductionScreen extends StatelessWidget {
   const IntroductionScreen({super.key});
@@ -16,15 +17,7 @@ class IntroductionScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "${context.l10n.startSetup}:",
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0,
-              color: Colors.grey,
-            ),
-          ),
+          LabelText(label: context.l10n.startSetup),
           const Gap(4),
           Text(
             context.l10n.offlineAccountInfo,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/currency_symbols.dart';
-import '../../../common/domain/currency_info.dart';
-import '../../../common/utils/extensions/custom_extensions.dart';
+import '../../common/constants/app_constants.dart';
+import '../../common/constants/currency_symbols.dart';
+import '../../common/dto/currency_info/currency_info_dto.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/utils/misc/app_utils.dart';
 
 class CurrencyCard extends StatelessWidget {
   CurrencyCard({
@@ -14,16 +16,14 @@ class CurrencyCard extends StatelessWidget {
   })  : currencyInfo = supportedCurrencyMap[currencyCode]!,
         selectedCurrencyInfo = supportedCurrencyMap[selectedCurrencyCode],
         systemCurrencyInfo = supportedCurrencyMap[systemCurrencyCode];
-  final CurrencyInfo currencyInfo;
-  final CurrencyInfo? selectedCurrencyInfo;
-  final CurrencyInfo? systemCurrencyInfo;
+  final CurrencyInfoDto currencyInfo;
+  final CurrencyInfoDto? selectedCurrencyInfo;
+  final CurrencyInfoDto? systemCurrencyInfo;
   final ValueChanged? onCurrencySelected;
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(64),
-      ),
+      shape: AppDimensions.rb16,
       clipBehavior: Clip.hardEdge,
       color: currencyInfo.code == selectedCurrencyInfo?.code
           ? currencyInfo.code == systemCurrencyInfo?.code
@@ -36,9 +36,10 @@ class CurrencyCard extends StatelessWidget {
                 ? context.colorScheme.onTertiaryContainer
                 : context.colorScheme.onSecondaryContainer
             : null,
-        onTap: currencyInfo.code != selectedCurrencyInfo?.code
-            ? () => onCurrencySelected?.call(currencyInfo.code)
-            : null,
+        onTap: AppUtils.returnIf(
+          currencyInfo.code != selectedCurrencyInfo?.code,
+          () => onCurrencySelected?.call(currencyInfo.code),
+        ),
         title: Text(
           currencyInfo.name,
           overflow: TextOverflow.ellipsis,

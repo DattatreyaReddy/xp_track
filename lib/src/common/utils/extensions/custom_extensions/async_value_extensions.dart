@@ -54,89 +54,52 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
   //   }
   // }
 
-  // Widget showUiWhenData(
-  //   BuildContext context,
-  //   Widget Function(T data) data, {
-  //   VoidCallback? refresh,
-  //   Widget Function(Widget)? wrapper,
-  //   bool showGenericError = false,
-  //   bool addScaffoldWrapper = false,
-  //   String scaffoldTitle = "",
-  //   Widget? progressIndicator,
-  // }) {
-  //   if (addScaffoldWrapper) {
-  //     wrapper = (body) => Scaffold(
-  //           appBar: LogoAppBar(title: Text(scaffoldTitle)),
-  //           body: body,
-  //         );
-  //   }
-  //   progressIndicator =
-  //       progressIndicator ?? const CenterCircularProgressIndicator();
-  //   return when(
-  //     data: data,
-  //     error: (error, trace) => wrapper == null
-  //         ? Card(
-  //             child: Padding(
-  //               padding: KEdgeInsets.a16.size,
-  //               child: Column(
-  //                 mainAxisSize: MainAxisSize.min,
-  //                 crossAxisAlignment: CrossAxisAlignment.stretch,
-  //                 children: [
-  //                   Assets.images.baseTruck.image(height: 128),
-  //                   const Gap(32),
-  //                   Text(
-  //                     error is DioException && error.response != null
-  //                         ? DioErrorUtil.handleError(error)
-  //                         : kDebugMode
-  //                             ? error.toString()
-  //                             : context.l10n!.somethingWentWrong,
-  //                     textAlign: TextAlign.center,
-  //                   ),
-  //                   if (refresh != null)
-  //                     TextButton(
-  //                       onPressed: refresh,
-  //                       child: Text(
-  //                         context.l10n!.refresh,
-  //                       ),
-  //                     )
-  //                 ],
-  //               ),
-  //             ),
-  //           )
-  //         : wrapper(
-  //             Center(
-  //               child: Padding(
-  //                 padding: KEdgeInsets.a16.size,
-  //                 child: Column(
-  //                   mainAxisSize: MainAxisSize.min,
-  //                   crossAxisAlignment: CrossAxisAlignment.stretch,
-  //                   children: [
-  //                     Assets.images.baseTruck.image(height: 128),
-  //                     const Gap(32),
-  //                     Text(
-  //                       error is DioException && error.response != null
-  //                           ? DioErrorUtil.handleError(error)
-  //                           : kDebugMode
-  //                               ? error.toString()
-  //                               : context.l10n!.somethingWentWrong,
-  //                       textAlign: TextAlign.center,
-  //                     ),
-  //                     if (refresh != null)
-  //                       TextButton(
-  //                         onPressed: refresh,
-  //                         child: Text(
-  //                           context.l10n!.refresh,
-  //                         ),
-  //                       )
-  //                   ],
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //     loading: () =>
-  //         wrapper == null ? progressIndicator! : wrapper(progressIndicator!),
-  //   );
-  // }
+  Widget showUiWhenData(
+    BuildContext context,
+    Widget Function(T data) data, {
+    VoidCallback? refresh,
+    Widget Function(Widget)? wrapper,
+    bool showGenericError = false,
+    String scaffoldTitle = "",
+    Widget? progressIndicator,
+    bool isDebugMode = false,
+  }) {
+    progressIndicator =
+        progressIndicator ?? const CenterCircularProgressIndicator();
+    return when(
+      data: data,
+      error: (error, trace) => AppUtils.wrapWidgetIf(
+        condition: wrapper == null,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Icon(Icons.error, size: 48),
+              const Gap(32),
+              if (isDebugMode)
+                Text(
+                  context.l10n.somethingWentWrong,
+                  textAlign: TextAlign.center,
+                )
+              else
+                ErrorDisplayCopy(error: error),
+              if (refresh != null)
+                TextButton(
+                  onPressed: refresh,
+                  child: Text(
+                    context.l10n.refresh,
+                  ),
+                )
+            ],
+          ),
+        ),
+      ),
+      loading: () =>
+          wrapper == null ? progressIndicator! : wrapper(progressIndicator!),
+    );
+  }
 
   // T? valueOrToast(Toast toast, {bool withMicroTask = false}) =>
   //     (this..showToastOnResponse(toast, withMicroTask: withMicroTask))

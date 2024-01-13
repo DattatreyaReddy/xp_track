@@ -15,7 +15,7 @@ class XpLogo extends StatelessWidget {
   final double fontSize;
   @override
   Widget build(context) {
-    return AppUtils.wrapIf(
+    return AppUtils.wrapWidgetIf(
       condition: shouldWrapHero,
       wrap: (child) => Hero(
         tag: AppHero.logo,

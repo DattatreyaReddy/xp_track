@@ -11,7 +11,7 @@ abstract class AppUtils {
         : gst.substring(2, min(12, gst.length)).toUpperCase();
   }
 
-  static Widget wrapIf({
+  static Widget wrapWidgetIf({
     bool? condition,
     Widget Function(Widget)? wrap,
     Widget Function(Widget)? elseWrap,
@@ -43,6 +43,16 @@ abstract class AppUtils {
   ]) {
     if (condition.ifNull()) {
       return value;
+    }
+    return elseValue;
+  }
+
+  static U? wrapIfNotNull<T, U>(
+    T? value,
+    U Function(T) wrap,
+  ) {
+    if (value != null) {
+      return wrap(value);
     }
     return null;
   }

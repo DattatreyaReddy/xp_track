@@ -15,7 +15,7 @@ class BigXpLogo extends StatelessWidget {
   final bool shouldWrapHero;
   @override
   Widget build(context) {
-    return AppUtils.wrapIf(
+    return AppUtils.wrapWidgetIf(
       condition: shouldWrapHero,
       wrap: (child) => Hero(
         tag: AppHero.logo,

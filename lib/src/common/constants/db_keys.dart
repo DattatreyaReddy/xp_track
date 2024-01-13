@@ -9,6 +9,7 @@ enum DBKey {
   isSetupCompleted('IS_SETUP_COMPLETED', false),
   userName('USER_NAME', null),
   selectedLocale('SELECTED_LOCALE', null),
+  isDebugMode('IS_DEBUG_MODE', false),
   ;
 
   const DBKey(this._name, this.initial);

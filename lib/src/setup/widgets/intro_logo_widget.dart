@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../common/constants/app_enums.dart';
-import '../../../common/utils/extensions/custom_extensions.dart';
-import '../../../common/utils/misc/app_utils.dart';
-import '../../../common/widgets/logo/big_xp_logo.dart';
+import '../../common/constants/app_constants.dart';
+import '../../common/constants/app_enums.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/utils/misc/app_utils.dart';
+import '../../common/widgets/logo/big_xp_logo.dart';
 
 class IntroLogoWidget extends StatelessWidget {
   const IntroLogoWidget({super.key});
@@ -14,7 +15,7 @@ class IntroLogoWidget extends StatelessWidget {
     return Hero(
       tag: AppHero.logo,
       child: Material(
-        child: AppUtils.wrapIf(
+        child: AppUtils.wrapWidgetIf(
           condition: context.isDesktopOrWider,
           wrap: (child) => Transform.scale(
             scale: 1.5,
@@ -57,9 +58,7 @@ class IntroLogoWidget extends StatelessWidget {
                   const Gap(16),
                   ChipTheme(
                     data: ChipThemeData(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      shape: AppDimensions.rb16,
                       backgroundColor: context.theme.colorScheme.secondary,
                       labelStyle: TextStyle(
                         color: context.theme.colorScheme.onSecondary,

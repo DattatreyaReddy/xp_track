@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'widgets/intro_nav_buttons.dart';
-import 'widgets/responsive_intro_widget.dart';
+import '../widgets/intro_nav_buttons.dart';
+import '../widgets/responsive_intro_widget.dart';
 
 class SetupCategoryScreen extends StatelessWidget {
   const SetupCategoryScreen({super.key});

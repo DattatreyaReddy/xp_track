@@ -225,9 +225,7 @@ extension ContextExtensions on BuildContext {
       isScrollControlled: true,
       enableDrag: false,
       isDismissible: false,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
+      shape: AppDimensions.rb16,
       builder: (context) => Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),

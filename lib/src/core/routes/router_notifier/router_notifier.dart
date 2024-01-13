@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../home/routes/routes.dart';
 import '../../../setup/routes/routes.dart';
 import '../../controllers/router_controller.dart';
-import '../../domain/app_config.dart';
+import '../../dto/app_config.dart';
 import '../routes.dart';
 
 part 'router_notifier.g.dart';

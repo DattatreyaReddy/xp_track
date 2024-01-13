@@ -23,8 +23,8 @@ RouteBase get $introductionRoute => GoRouteData.$route(
           factory: $SetupCurrencyRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'bank-account',
-          factory: $SetupBankAccountRouteExtension._fromState,
+          path: 'account',
+          factory: $SetupAccountRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: 'category',
@@ -87,12 +87,12 @@ extension $SetupCurrencyRouteExtension on SetupCurrencyRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SetupBankAccountRouteExtension on SetupBankAccountRoute {
-  static SetupBankAccountRoute _fromState(GoRouterState state) =>
-      const SetupBankAccountRoute();
+extension $SetupAccountRouteExtension on SetupAccountRoute {
+  static SetupAccountRoute _fromState(GoRouterState state) =>
+      const SetupAccountRoute();
 
   String get location => GoRouteData.$location(
-        '/setup/bank-account',
+        '/setup/account',
       );
 
   void go(BuildContext context) => context.go(location);

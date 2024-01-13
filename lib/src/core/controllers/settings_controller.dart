@@ -26,8 +26,14 @@ class SelectedLocale extends _$SelectedLocale
 }
 
 @riverpod
-class SelectedCurrency extends _$SelectedCurrency
+class DefaultCurrency extends _$DefaultCurrency
     with SharedPreferenceClient<String> {
   @override
   String? build() => initialize(DBKey.currency);
+}
+
+@riverpod
+class IsDebugMode extends _$IsDebugMode with SharedPreferenceClient<bool> {
+  @override
+  bool? build() => initialize(DBKey.isDebugMode);
 }

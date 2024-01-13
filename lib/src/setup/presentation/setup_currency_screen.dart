@@ -12,9 +12,10 @@ import '../../common/constants/currency_symbols.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../core/controllers/settings_controller.dart';
 import '../routes/routes.dart';
-import 'widgets/currency_card.dart';
-import 'widgets/intro_nav_buttons.dart';
-import 'widgets/responsive_intro_widget.dart';
+import '../widgets/currency_card.dart';
+import '../widgets/intro_nav_buttons.dart';
+import '../widgets/label_text.dart';
+import '../widgets/responsive_intro_widget.dart';
 
 class SetupCurrencyScreen extends HookConsumerWidget {
   const SetupCurrencyScreen({super.key});
@@ -41,8 +42,8 @@ class SetupCurrencyScreen extends HookConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    final stepSelectedCurrency = ref.watch(selectedCurrencyProvider);
-    final selectedCurrency = useState<String?>(stepSelectedCurrency);
+    final defaultSelectedCurrency = ref.watch(defaultCurrencyProvider);
+    final selectedCurrency = useState<String?>(defaultSelectedCurrency);
     final resultCurrencyList = useState(supportedCurrencyCodes);
     final focusNode = useFocusNode();
     final searchController = useTextEditingController();
@@ -50,8 +51,8 @@ class SetupCurrencyScreen extends HookConsumerWidget {
     useListenable(focusNode);
 
     useEffect(() {
-      if (stepSelectedCurrency.isNotBlank) {
-        selectedCurrency.value = stepSelectedCurrency;
+      if (defaultSelectedCurrency.isNotBlank) {
+        selectedCurrency.value = defaultSelectedCurrency;
       }
       if (selectedCurrency.value.isBlank) {
         Future.microtask(() {
@@ -62,7 +63,7 @@ class SetupCurrencyScreen extends HookConsumerWidget {
         });
       }
       return null;
-    }, [stepSelectedCurrency]);
+    }, [defaultSelectedCurrency]);
 
     useEffect(() {
       final query = searchController.text;
@@ -87,15 +88,7 @@ class SetupCurrencyScreen extends HookConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "${context.l10n.currency}:",
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0,
-              color: Colors.grey,
-            ),
-          ),
+          LabelText(label: context.l10n.currency),
           const Gap(8),
           if (selectedCurrency.value.isNotBlank) ...[
             CurrencyCard(
@@ -120,7 +113,7 @@ class SetupCurrencyScreen extends HookConsumerWidget {
                   color: Colors.grey,
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(32),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 isDense: true,
                 prefixIcon: const Icon(Icons.search),
@@ -147,9 +140,9 @@ class SetupCurrencyScreen extends HookConsumerWidget {
               onPressedPrevious: () => context.pop(),
               onPressedNext: () {
                 ref
-                    .read(selectedCurrencyProvider.notifier)
+                    .read(defaultCurrencyProvider.notifier)
                     .update(selectedCurrency.value);
-                const SetupBankAccountRoute().push(context);
+                const SetupAccountRoute().push(context);
               },
             )
           ]

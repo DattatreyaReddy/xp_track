@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../common/utils/extensions/custom_extensions.dart';
-import '../../../common/utils/misc/app_utils.dart';
-import '../../../common/widgets/logo/xp_logo.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/utils/misc/app_utils.dart';
+import '../../common/widgets/logo/xp_logo.dart';
 import 'intro_logo_widget.dart';
 
 class ResponsiveIntroWidget extends StatelessWidget {
@@ -18,18 +18,15 @@ class ResponsiveIntroWidget extends StatelessWidget {
   final bool isMobileScrollable;
   @override
   Widget build(BuildContext context) {
-    final newChild = child != null
-        ? ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: context.responsiveValue(
-                desktop: 600,
-                tablet: 400,
-                mobile: 300,
-              ),
-            ),
-            child: child!,
-          )
-        : null;
+    final newChild = AppUtils.returnIf(
+        child != null,
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth:
+                context.responsiveValue(desktop: 600, tablet: 400, mobile: 300),
+          ),
+          child: child!,
+        ));
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32) +
@@ -45,26 +42,39 @@ class ResponsiveIntroWidget extends StatelessWidget {
                   ),
                   const Gap.expand(16),
                   if (newChild != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 32),
-                      child: newChild,
+                    SizedBox(
+                      height: context.heightScale(.8),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 32),
+                          child: newChild,
+                        ),
+                      ),
                     ),
                 ],
               )
-            : Center(
-                child: AppUtils.wrapIf(
+            : Align(
+                alignment: Alignment.bottomCenter,
+                child: AppUtils.wrapWidgetIf(
                   condition: isMobileScrollable,
-                  wrap: (child) => SingleChildScrollView(child: child),
+                  wrap: (child) => SingleChildScrollView(
+                    reverse: true,
+                    child: child,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      showMiniLogoForMobile
-                          ? const XpLogo()
-                          : const IntroLogoWidget(),
-                      const Gap(32),
+                      if (showMiniLogoForMobile)
+                        const XpLogo()
+                      else
+                        SizedBox(
+                          height: context.heightScale(.5),
+                          child: const IntroLogoWidget(),
+                        ),
+                      const Gap(16),
                       if (newChild != null)
-                        AppUtils.wrapIf(
+                        AppUtils.wrapWidgetIf(
                           condition: !isMobileScrollable,
                           wrap: (child) => Expanded(child: child),
                           child: newChild,

@@ -5,10 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/utils/misc/app_utils.dart';
 import '../../core/controllers/settings_controller.dart';
 import '../routes/routes.dart';
-import 'widgets/intro_nav_buttons.dart';
-import 'widgets/responsive_intro_widget.dart';
+import '../widgets/intro_nav_buttons.dart';
+import '../widgets/label_text.dart';
+import '../widgets/responsive_intro_widget.dart';
 
 class SetupUserNameScreen extends HookConsumerWidget {
   const SetupUserNameScreen({super.key});
@@ -26,15 +28,7 @@ class SetupUserNameScreen extends HookConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "${context.l10n.userName}:",
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 0,
-              color: Colors.grey,
-            ),
-          ),
+          LabelText(label: context.l10n.userName),
           const Gap(8),
           TextField(
             controller: userNameController,
@@ -46,19 +40,26 @@ class SetupUserNameScreen extends HookConsumerWidget {
               isDense: true,
               hintText: context.l10n.userName,
               border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(32)),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
             ),
           ),
           const Gap(48),
-          IntroNavButtons(
-            onPressedPrevious: () => context.pop(),
-            onPressedNext: () {
-              final value = userNameController.text.trim();
-              ref.read(userNameProvider.notifier).update(value);
-              const SetupCurrencyRoute().push(context);
-            },
-          ),
+          HookBuilder(builder: (context) {
+            useListenable(userNameController);
+            return IntroNavButtons(
+              onPressedPrevious: () => context.pop(),
+              persistNext: true,
+              onPressedNext: AppUtils.returnIf(
+                userNameController.text.trim().isNotBlank,
+                () {
+                  final value = userNameController.text.trim();
+                  ref.read(userNameProvider.notifier).update(value);
+                  const SetupCurrencyRoute().push(context);
+                },
+              ),
+            );
+          }),
         ],
       ),
     );

@@ -53,21 +53,36 @@ final selectedLocaleProvider =
 );
 
 typedef _$SelectedLocale = AutoDisposeNotifier<String?>;
-String _$selectedCurrencyHash() => r'84da7020c07f3fe1f53ba4a25fdb7b351eb40b33';
+String _$defaultCurrencyHash() => r'8d2be3597d978421f97f0e85c390b7b8020ff47b';
 
-/// See also [SelectedCurrency].
-@ProviderFor(SelectedCurrency)
-final selectedCurrencyProvider =
-    AutoDisposeNotifierProvider<SelectedCurrency, String?>.internal(
-  SelectedCurrency.new,
-  name: r'selectedCurrencyProvider',
+/// See also [DefaultCurrency].
+@ProviderFor(DefaultCurrency)
+final defaultCurrencyProvider =
+    AutoDisposeNotifierProvider<DefaultCurrency, String?>.internal(
+  DefaultCurrency.new,
+  name: r'defaultCurrencyProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$selectedCurrencyHash,
+      : _$defaultCurrencyHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SelectedCurrency = AutoDisposeNotifier<String?>;
+typedef _$DefaultCurrency = AutoDisposeNotifier<String?>;
+String _$isDebugModeHash() => r'e43bf76b0dccb9e72e022b355ab9f88d334b8541';
+
+/// See also [IsDebugMode].
+@ProviderFor(IsDebugMode)
+final isDebugModeProvider =
+    AutoDisposeNotifierProvider<IsDebugMode, bool?>.internal(
+  IsDebugMode.new,
+  name: r'isDebugModeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$isDebugModeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$IsDebugMode = AutoDisposeNotifier<bool?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
