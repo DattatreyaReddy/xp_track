@@ -96,8 +96,8 @@ class __$$SplitDetailsDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SplitDetailsDtoImpl implements _SplitDetailsDto {
-  _$SplitDetailsDtoImpl({required this.splitInto});
+class _$SplitDetailsDtoImpl extends _SplitDetailsDto {
+  _$SplitDetailsDtoImpl({required this.splitInto}) : super._();
 
   factory _$SplitDetailsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$SplitDetailsDtoImplFromJson(json);
@@ -138,9 +138,10 @@ class _$SplitDetailsDtoImpl implements _SplitDetailsDto {
   }
 }
 
-abstract class _SplitDetailsDto implements SplitDetailsDto {
+abstract class _SplitDetailsDto extends SplitDetailsDto {
   factory _SplitDetailsDto({required final int splitInto}) =
       _$SplitDetailsDtoImpl;
+  _SplitDetailsDto._() : super._();
 
   factory _SplitDetailsDto.fromJson(Map<String, dynamic> json) =
       _$SplitDetailsDtoImpl.fromJson;

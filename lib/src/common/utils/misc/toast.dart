@@ -3,8 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../constants/app_constants.dart';
-
 part 'toast.g.dart';
 
 class Toast {
@@ -29,7 +27,6 @@ class Toast {
           text: error,
           backgroundColor: Colors.red.shade400,
         ),
-        toastDuration: AppConstants.errorToastDuration,
         gravity: ToastGravity.TOP,
       );
 

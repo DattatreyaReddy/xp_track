@@ -13,13 +13,17 @@ class AccountTypeSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SegmentedButton<AccountType>(
+      style: const ButtonStyle(visualDensity: VisualDensity.comfortable),
       selected: {accountType},
       onSelectionChanged: (values) => onChanged(values.first),
       segments: AccountType.values
           .map((e) => ButtonSegment(
                 value: e,
                 icon: Icon(e.iconData),
-                label: Text(e.toLocale(context)),
+                label: Text(
+                  e.toLocale(context),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 tooltip: e.toLocale(context),
               ))
           .toList(),

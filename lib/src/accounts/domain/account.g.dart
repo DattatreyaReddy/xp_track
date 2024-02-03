@@ -86,7 +86,34 @@ const AccountSchema = CollectionSchema(
   deserialize: _accountDeserialize,
   deserializeProp: _accountDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'orderNumber': IndexSchema(
+      id: 7506692016205733885,
+      name: r'orderNumber',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'orderNumber',
+          type: IndexType.value,
+          caseSensitive: false,
+        )
+      ],
+    ),
+    r'isDeleted': IndexSchema(
+      id: -786475870904832312,
+      name: r'isDeleted',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'isDeleted',
+          type: IndexType.value,
+          caseSensitive: false,
+        )
+      ],
+    )
+  },
   links: {},
   embeddedSchemas: {
     r'CreditDetails': CreditDetailsSchema,
@@ -265,6 +292,22 @@ extension AccountQueryWhereSort on QueryBuilder<Account, Account, QWhere> {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
+
+  QueryBuilder<Account, Account, QAfterWhere> anyOrderNumber() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        const IndexWhereClause.any(indexName: r'orderNumber'),
+      );
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhere> anyIsDeleted() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        const IndexWhereClause.any(indexName: r'isDeleted'),
+      );
+    });
+  }
 }
 
 extension AccountQueryWhere on QueryBuilder<Account, Account, QWhereClause> {
@@ -330,6 +373,141 @@ extension AccountQueryWhere on QueryBuilder<Account, Account, QWhereClause> {
         upper: upperId,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> orderNumberEqualTo(
+      int orderNumber) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'orderNumber',
+        value: [orderNumber],
+      ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> orderNumberNotEqualTo(
+      int orderNumber) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'orderNumber',
+              lower: [],
+              upper: [orderNumber],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'orderNumber',
+              lower: [orderNumber],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'orderNumber',
+              lower: [orderNumber],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'orderNumber',
+              lower: [],
+              upper: [orderNumber],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> orderNumberGreaterThan(
+    int orderNumber, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'orderNumber',
+        lower: [orderNumber],
+        includeLower: include,
+        upper: [],
+      ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> orderNumberLessThan(
+    int orderNumber, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'orderNumber',
+        lower: [],
+        upper: [orderNumber],
+        includeUpper: include,
+      ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> orderNumberBetween(
+    int lowerOrderNumber,
+    int upperOrderNumber, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'orderNumber',
+        lower: [lowerOrderNumber],
+        includeLower: includeLower,
+        upper: [upperOrderNumber],
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> isDeletedEqualTo(
+      bool isDeleted) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'isDeleted',
+        value: [isDeleted],
+      ));
+    });
+  }
+
+  QueryBuilder<Account, Account, QAfterWhereClause> isDeletedNotEqualTo(
+      bool isDeleted) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'isDeleted',
+              lower: [],
+              upper: [isDeleted],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'isDeleted',
+              lower: [isDeleted],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'isDeleted',
+              lower: [isDeleted],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'isDeleted',
+              lower: [],
+              upper: [isDeleted],
+              includeUpper: false,
+            ));
+      }
     });
   }
 }
@@ -1569,9 +1747,9 @@ const CreditDetailsSchema = Schema(
   name: r'CreditDetails',
   id: -1088401886695243912,
   properties: {
-    r'billingCycleInDays': PropertySchema(
+    r'billingDate': PropertySchema(
       id: 0,
-      name: r'billingCycleInDays',
+      name: r'billingDate',
       type: IsarType.long,
     ),
     r'gracePeriodInDays': PropertySchema(
@@ -1583,11 +1761,6 @@ const CreditDetailsSchema = Schema(
       id: 2,
       name: r'limit',
       type: IsarType.double,
-    ),
-    r'startDate': PropertySchema(
-      id: 3,
-      name: r'startDate',
-      type: IsarType.dateTime,
     )
   },
   estimateSize: _creditDetailsEstimateSize,
@@ -1611,10 +1784,9 @@ void _creditDetailsSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.billingCycleInDays);
+  writer.writeLong(offsets[0], object.billingDate);
   writer.writeLong(offsets[1], object.gracePeriodInDays);
   writer.writeDouble(offsets[2], object.limit);
-  writer.writeDateTime(offsets[3], object.startDate);
 }
 
 CreditDetails _creditDetailsDeserialize(
@@ -1624,10 +1796,9 @@ CreditDetails _creditDetailsDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = CreditDetails(
-    billingCycleInDays: reader.readLongOrNull(offsets[0]),
+    billingDate: reader.readLongOrNull(offsets[0]),
     gracePeriodInDays: reader.readLongOrNull(offsets[1]),
     limit: reader.readDoubleOrNull(offsets[2]),
-    startDate: reader.readDateTimeOrNull(offsets[3]),
   );
   return object;
 }
@@ -1645,8 +1816,6 @@ P _creditDetailsDeserializeProp<P>(
       return (reader.readLongOrNull(offset)) as P;
     case 2:
       return (reader.readDoubleOrNull(offset)) as P;
-    case 3:
-      return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -1655,63 +1824,63 @@ P _creditDetailsDeserializeProp<P>(
 extension CreditDetailsQueryFilter
     on QueryBuilder<CreditDetails, CreditDetails, QFilterCondition> {
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysIsNull() {
+      billingDateIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'billingCycleInDays',
+        property: r'billingDate',
       ));
     });
   }
 
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysIsNotNull() {
+      billingDateIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'billingCycleInDays',
+        property: r'billingDate',
       ));
     });
   }
 
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysEqualTo(int? value) {
+      billingDateEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'billingCycleInDays',
+        property: r'billingDate',
         value: value,
       ));
     });
   }
 
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysGreaterThan(
+      billingDateGreaterThan(
     int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'billingCycleInDays',
+        property: r'billingDate',
         value: value,
       ));
     });
   }
 
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysLessThan(
+      billingDateLessThan(
     int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'billingCycleInDays',
+        property: r'billingDate',
         value: value,
       ));
     });
   }
 
   QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      billingCycleInDaysBetween(
+      billingDateBetween(
     int? lower,
     int? upper, {
     bool includeLower = true,
@@ -1719,7 +1888,7 @@ extension CreditDetailsQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'billingCycleInDays',
+        property: r'billingDate',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1882,80 +2051,6 @@ extension CreditDetailsQueryFilter
         upper: upper,
         includeUpper: includeUpper,
         epsilon: epsilon,
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'startDate',
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'startDate',
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateEqualTo(DateTime? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'startDate',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateGreaterThan(
-    DateTime? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'startDate',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateLessThan(
-    DateTime? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'startDate',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<CreditDetails, CreditDetails, QAfterFilterCondition>
-      startDateBetween(
-    DateTime? lower,
-    DateTime? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'startDate',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
       ));
     });
   }

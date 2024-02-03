@@ -12,25 +12,35 @@ class ResponsiveIntroWidget extends StatelessWidget {
     this.child,
     this.showMiniLogoForMobile = false,
     this.isMobileScrollable = true,
+    this.drawer,
+    this.endDrawer,
   });
   final Widget? child;
   final bool showMiniLogoForMobile;
   final bool isMobileScrollable;
+  final Widget? drawer;
+  final Widget? endDrawer;
   @override
   Widget build(BuildContext context) {
     final newChild = AppUtils.returnIf(
         child != null,
         ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth:
-                context.responsiveValue(desktop: 600, tablet: 400, mobile: 300),
+            maxWidth: context.responsiveValue(
+              desktop: 600,
+              tablet: 450,
+              smallTablet: 320,
+              mobile: 450,
+            ),
           ),
           child: child!,
         ));
     return Scaffold(
+      drawer: drawer,
+      endDrawer: endDrawer,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32) +
-            const EdgeInsets.only(top: 64, bottom: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16) +
+            const EdgeInsets.only(top: 32, bottom: 16),
         child: context.isSmallTablet
             ? Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

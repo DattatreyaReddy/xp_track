@@ -6,10 +6,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../common/utils/misc/app_utils.dart';
+import '../../common/widgets/label_text.dart';
 import '../../core/controllers/settings_controller.dart';
 import '../routes/routes.dart';
 import '../widgets/intro_nav_buttons.dart';
-import '../widgets/label_text.dart';
 import '../widgets/responsive_intro_widget.dart';
 
 class SetupUserNameScreen extends HookConsumerWidget {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/widgets/label_text.dart';
 import '../routes/routes.dart';
 import '../widgets/intro_nav_buttons.dart';
-import '../widgets/label_text.dart';
 import '../widgets/responsive_intro_widget.dart';
 
 class IntroductionScreen extends StatelessWidget {

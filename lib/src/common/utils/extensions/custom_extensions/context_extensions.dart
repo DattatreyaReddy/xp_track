@@ -8,6 +8,8 @@ extension ContextExtensions on BuildContext {
   ///
   get hideKeyboard => FocusScope.of(this).unfocus();
 
+  get hasFocus => Focus.of(this).hasFocus;
+
   AppLocalizations get l10n => AppLocalizations.of(this)!;
 
   ///
@@ -22,6 +24,8 @@ extension ContextExtensions on BuildContext {
   double horizontalScale({double scale = 1}) => scale * horizontal;
 
   FocusScopeNode get focusScope => FocusScope.of(this);
+
+  FocusNode get focus => Focus.of(this);
 
   ///
   /// accepts a double [scale] and returns scaled sized based on the screen
@@ -189,6 +193,7 @@ extension ContextExtensions on BuildContext {
   T responsiveValue<T>({
     T? watch,
     T? mobile,
+    T? smallTablet,
     T? tablet,
     T? desktop,
   }) {
@@ -200,6 +205,7 @@ extension ContextExtensions on BuildContext {
     final strictValues = [
       if (deviceWidth >= 1200) desktop, //desktop is allowed
       if (deviceWidth >= 720) tablet, //tablet is allowed
+      if (deviceWidth >= 600) smallTablet, //smallTablet is allowed
       if (deviceWidth >= 300) mobile, //mobile is allowed
       watch, //watch is allowed
     ].whereType<T>();

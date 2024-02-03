@@ -21,8 +21,7 @@ CreditDetailsDto _$CreditDetailsDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CreditDetailsDto {
   double get limit => throw _privateConstructorUsedError;
-  int get billingCycleInDays => throw _privateConstructorUsedError;
-  DateTime get startDate => throw _privateConstructorUsedError;
+  int get billingDate => throw _privateConstructorUsedError;
   int get gracePeriodInDays => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,11 +36,7 @@ abstract class $CreditDetailsDtoCopyWith<$Res> {
           CreditDetailsDto value, $Res Function(CreditDetailsDto) then) =
       _$CreditDetailsDtoCopyWithImpl<$Res, CreditDetailsDto>;
   @useResult
-  $Res call(
-      {double limit,
-      int billingCycleInDays,
-      DateTime startDate,
-      int gracePeriodInDays});
+  $Res call({double limit, int billingDate, int gracePeriodInDays});
 }
 
 /// @nodoc
@@ -58,8 +53,7 @@ class _$CreditDetailsDtoCopyWithImpl<$Res, $Val extends CreditDetailsDto>
   @override
   $Res call({
     Object? limit = null,
-    Object? billingCycleInDays = null,
-    Object? startDate = null,
+    Object? billingDate = null,
     Object? gracePeriodInDays = null,
   }) {
     return _then(_value.copyWith(
@@ -67,14 +61,10 @@ class _$CreditDetailsDtoCopyWithImpl<$Res, $Val extends CreditDetailsDto>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as double,
-      billingCycleInDays: null == billingCycleInDays
-          ? _value.billingCycleInDays
-          : billingCycleInDays // ignore: cast_nullable_to_non_nullable
+      billingDate: null == billingDate
+          ? _value.billingDate
+          : billingDate // ignore: cast_nullable_to_non_nullable
               as int,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       gracePeriodInDays: null == gracePeriodInDays
           ? _value.gracePeriodInDays
           : gracePeriodInDays // ignore: cast_nullable_to_non_nullable
@@ -91,11 +81,7 @@ abstract class _$$CreditDetailsDtoImplCopyWith<$Res>
       __$$CreditDetailsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double limit,
-      int billingCycleInDays,
-      DateTime startDate,
-      int gracePeriodInDays});
+  $Res call({double limit, int billingDate, int gracePeriodInDays});
 }
 
 /// @nodoc
@@ -110,8 +96,7 @@ class __$$CreditDetailsDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? limit = null,
-    Object? billingCycleInDays = null,
-    Object? startDate = null,
+    Object? billingDate = null,
     Object? gracePeriodInDays = null,
   }) {
     return _then(_$CreditDetailsDtoImpl(
@@ -119,14 +104,10 @@ class __$$CreditDetailsDtoImplCopyWithImpl<$Res>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as double,
-      billingCycleInDays: null == billingCycleInDays
-          ? _value.billingCycleInDays
-          : billingCycleInDays // ignore: cast_nullable_to_non_nullable
+      billingDate: null == billingDate
+          ? _value.billingDate
+          : billingDate // ignore: cast_nullable_to_non_nullable
               as int,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       gracePeriodInDays: null == gracePeriodInDays
           ? _value.gracePeriodInDays
           : gracePeriodInDays // ignore: cast_nullable_to_non_nullable
@@ -137,12 +118,12 @@ class __$$CreditDetailsDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CreditDetailsDtoImpl implements _CreditDetailsDto {
+class _$CreditDetailsDtoImpl extends _CreditDetailsDto {
   _$CreditDetailsDtoImpl(
       {required this.limit,
-      required this.billingCycleInDays,
-      required this.startDate,
-      required this.gracePeriodInDays});
+      required this.billingDate,
+      required this.gracePeriodInDays})
+      : super._();
 
   factory _$CreditDetailsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreditDetailsDtoImplFromJson(json);
@@ -150,15 +131,13 @@ class _$CreditDetailsDtoImpl implements _CreditDetailsDto {
   @override
   final double limit;
   @override
-  final int billingCycleInDays;
-  @override
-  final DateTime startDate;
+  final int billingDate;
   @override
   final int gracePeriodInDays;
 
   @override
   String toString() {
-    return 'CreditDetailsDto(limit: $limit, billingCycleInDays: $billingCycleInDays, startDate: $startDate, gracePeriodInDays: $gracePeriodInDays)';
+    return 'CreditDetailsDto(limit: $limit, billingDate: $billingDate, gracePeriodInDays: $gracePeriodInDays)';
   }
 
   @override
@@ -167,18 +146,16 @@ class _$CreditDetailsDtoImpl implements _CreditDetailsDto {
         (other.runtimeType == runtimeType &&
             other is _$CreditDetailsDtoImpl &&
             (identical(other.limit, limit) || other.limit == limit) &&
-            (identical(other.billingCycleInDays, billingCycleInDays) ||
-                other.billingCycleInDays == billingCycleInDays) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
+            (identical(other.billingDate, billingDate) ||
+                other.billingDate == billingDate) &&
             (identical(other.gracePeriodInDays, gracePeriodInDays) ||
                 other.gracePeriodInDays == gracePeriodInDays));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, limit, billingCycleInDays, startDate, gracePeriodInDays);
+  int get hashCode =>
+      Object.hash(runtimeType, limit, billingDate, gracePeriodInDays);
 
   @JsonKey(ignore: true)
   @override
@@ -195,12 +172,12 @@ class _$CreditDetailsDtoImpl implements _CreditDetailsDto {
   }
 }
 
-abstract class _CreditDetailsDto implements CreditDetailsDto {
+abstract class _CreditDetailsDto extends CreditDetailsDto {
   factory _CreditDetailsDto(
       {required final double limit,
-      required final int billingCycleInDays,
-      required final DateTime startDate,
+      required final int billingDate,
       required final int gracePeriodInDays}) = _$CreditDetailsDtoImpl;
+  _CreditDetailsDto._() : super._();
 
   factory _CreditDetailsDto.fromJson(Map<String, dynamic> json) =
       _$CreditDetailsDtoImpl.fromJson;
@@ -208,9 +185,7 @@ abstract class _CreditDetailsDto implements CreditDetailsDto {
   @override
   double get limit;
   @override
-  int get billingCycleInDays;
-  @override
-  DateTime get startDate;
+  int get billingDate;
   @override
   int get gracePeriodInDays;
   @override

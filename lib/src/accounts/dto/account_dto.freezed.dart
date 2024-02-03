@@ -20,6 +20,10 @@ AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountDto {
+  int? get accountId => throw _privateConstructorUsedError;
+  bool? get isDeleted => throw _privateConstructorUsedError;
+  DateTime? get dateCreated => throw _privateConstructorUsedError;
+  DateTime? get lastModified => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get icon => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
@@ -43,7 +47,11 @@ abstract class $AccountDtoCopyWith<$Res> {
       _$AccountDtoCopyWithImpl<$Res, AccountDto>;
   @useResult
   $Res call(
-      {String name,
+      {int? accountId,
+      bool? isDeleted,
+      DateTime? dateCreated,
+      DateTime? lastModified,
+      String name,
       int icon,
       int color,
       String currencyCode,
@@ -70,6 +78,10 @@ class _$AccountDtoCopyWithImpl<$Res, $Val extends AccountDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? accountId = freezed,
+    Object? isDeleted = freezed,
+    Object? dateCreated = freezed,
+    Object? lastModified = freezed,
     Object? name = null,
     Object? icon = null,
     Object? color = null,
@@ -81,6 +93,22 @@ class _$AccountDtoCopyWithImpl<$Res, $Val extends AccountDto>
     Object? splitDetails = freezed,
   }) {
     return _then(_value.copyWith(
+      accountId: freezed == accountId
+          ? _value.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateCreated: freezed == dateCreated
+          ? _value.dateCreated
+          : dateCreated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastModified: freezed == lastModified
+          ? _value.lastModified
+          : lastModified // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -154,7 +182,11 @@ abstract class _$$AccountDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
+      {int? accountId,
+      bool? isDeleted,
+      DateTime? dateCreated,
+      DateTime? lastModified,
+      String name,
       int icon,
       int color,
       String currencyCode,
@@ -181,6 +213,10 @@ class __$$AccountDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? accountId = freezed,
+    Object? isDeleted = freezed,
+    Object? dateCreated = freezed,
+    Object? lastModified = freezed,
     Object? name = null,
     Object? icon = null,
     Object? color = null,
@@ -192,6 +228,22 @@ class __$$AccountDtoImplCopyWithImpl<$Res>
     Object? splitDetails = freezed,
   }) {
     return _then(_$AccountDtoImpl(
+      accountId: freezed == accountId
+          ? _value.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _value.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      dateCreated: freezed == dateCreated
+          ? _value.dateCreated
+          : dateCreated // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastModified: freezed == lastModified
+          ? _value.lastModified
+          : lastModified // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -236,7 +288,11 @@ class __$$AccountDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccountDtoImpl extends _AccountDto {
   _$AccountDtoImpl(
-      {required this.name,
+      {this.accountId,
+      this.isDeleted,
+      this.dateCreated,
+      this.lastModified,
+      required this.name,
       required this.icon,
       required this.color,
       required this.currencyCode,
@@ -250,6 +306,14 @@ class _$AccountDtoImpl extends _AccountDto {
   factory _$AccountDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccountDtoImplFromJson(json);
 
+  @override
+  final int? accountId;
+  @override
+  final bool? isDeleted;
+  @override
+  final DateTime? dateCreated;
+  @override
+  final DateTime? lastModified;
   @override
   final String name;
   @override
@@ -271,7 +335,7 @@ class _$AccountDtoImpl extends _AccountDto {
 
   @override
   String toString() {
-    return 'AccountDto(name: $name, icon: $icon, color: $color, currencyCode: $currencyCode, orderNumber: $orderNumber, includeInBalance: $includeInBalance, accountType: $accountType, creditDetails: $creditDetails, splitDetails: $splitDetails)';
+    return 'AccountDto(accountId: $accountId, isDeleted: $isDeleted, dateCreated: $dateCreated, lastModified: $lastModified, name: $name, icon: $icon, color: $color, currencyCode: $currencyCode, orderNumber: $orderNumber, includeInBalance: $includeInBalance, accountType: $accountType, creditDetails: $creditDetails, splitDetails: $splitDetails)';
   }
 
   @override
@@ -279,6 +343,14 @@ class _$AccountDtoImpl extends _AccountDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AccountDtoImpl &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.dateCreated, dateCreated) ||
+                other.dateCreated == dateCreated) &&
+            (identical(other.lastModified, lastModified) ||
+                other.lastModified == lastModified) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.color, color) || other.color == color) &&
@@ -298,8 +370,21 @@ class _$AccountDtoImpl extends _AccountDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, icon, color, currencyCode,
-      orderNumber, includeInBalance, accountType, creditDetails, splitDetails);
+  int get hashCode => Object.hash(
+      runtimeType,
+      accountId,
+      isDeleted,
+      dateCreated,
+      lastModified,
+      name,
+      icon,
+      color,
+      currencyCode,
+      orderNumber,
+      includeInBalance,
+      accountType,
+      creditDetails,
+      splitDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -317,7 +402,11 @@ class _$AccountDtoImpl extends _AccountDto {
 
 abstract class _AccountDto extends AccountDto {
   factory _AccountDto(
-      {required final String name,
+      {final int? accountId,
+      final bool? isDeleted,
+      final DateTime? dateCreated,
+      final DateTime? lastModified,
+      required final String name,
       required final int icon,
       required final int color,
       required final String currencyCode,
@@ -331,6 +420,14 @@ abstract class _AccountDto extends AccountDto {
   factory _AccountDto.fromJson(Map<String, dynamic> json) =
       _$AccountDtoImpl.fromJson;
 
+  @override
+  int? get accountId;
+  @override
+  bool? get isDeleted;
+  @override
+  DateTime? get dateCreated;
+  @override
+  DateTime? get lastModified;
   @override
   String get name;
   @override

@@ -9,6 +9,20 @@ extension IterableExtensions<T> on Iterable<T>? {
 
   bool get isSingletonList => isNotBlank && this!.length == 1;
 
+  T? getPrev(int index) {
+    if (isNull) return null;
+    final newIndex = index - 1;
+    if (newIndex < 0) return null;
+    return this?.elementAtOrNull(newIndex);
+  }
+
+  T? getNext(int index) {
+    if (isNull) return null;
+    final newIndex = index + 1;
+    if (newIndex < 0) return null;
+    return this?.elementAtOrNull(newIndex);
+  }
+
   T? get firstOrNull {
     if (isNull) return null;
     var iterator = this!.iterator;

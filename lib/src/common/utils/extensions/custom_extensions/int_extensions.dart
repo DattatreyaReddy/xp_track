@@ -4,12 +4,16 @@ extension IntExtensions on int? {
   bool get isNull => this == null;
   bool get isZero => this != null ? this! == 0 : false;
   bool get isNullOrZero => isNull || isZero;
+  bool get isValidIsarId =>
+      this != null && this! >= 0 && this! != Isar.autoIncrement;
   bool liesBetween({int lower = 0, int upper = 1}) =>
       this != null ? this! >= lower && this! <= upper : false;
   bool isGreaterThan(int i) => isNull ? false : this! > i;
   bool isLessThan(int i) => isNull ? false : this! < i;
 
   int ifNull([int value = 0]) => isNull ? value : this!;
+
+  int ifNonPositive([int value = 0]) => isNull || this! < 0 ? value : this!;
 
   bool? get toBool => (this == null || this == 0) ? null : this == 1;
 

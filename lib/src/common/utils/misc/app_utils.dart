@@ -38,7 +38,7 @@ abstract class AppUtils {
 
   static T? returnIf<T>(
     bool? condition,
-    T value, [
+    T? value, [
     T? elseValue,
   ]) {
     if (condition.ifNull()) {

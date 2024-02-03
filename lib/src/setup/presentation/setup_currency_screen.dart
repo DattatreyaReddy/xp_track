@@ -10,11 +10,11 @@ import 'package:intl/intl.dart';
 
 import '../../common/constants/currency_symbols.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/widgets/label_text.dart';
 import '../../core/controllers/settings_controller.dart';
 import '../routes/routes.dart';
 import '../widgets/currency_card.dart';
 import '../widgets/intro_nav_buttons.dart';
-import '../widgets/label_text.dart';
 import '../widgets/responsive_intro_widget.dart';
 
 class SetupCurrencyScreen extends HookConsumerWidget {
@@ -122,16 +122,23 @@ class SetupCurrencyScreen extends HookConsumerWidget {
           ),
           const Gap(8),
           Expanded(
-            child: ListView.builder(
-              itemCount: resultCurrencyList.value.length,
-              itemBuilder: (context, index) {
-                return CurrencyCard(
-                  currencyCode: resultCurrencyList.value.elementAt(index),
-                  selectedCurrencyCode: selectedCurrency.value,
-                  systemCurrencyCode: getSystemCurrencyName(context),
-                  onCurrencySelected: (value) => selectedCurrency.value = value,
-                );
-              },
+            child: Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: ListView.builder(
+                itemCount: resultCurrencyList.value.length,
+                itemBuilder: (context, index) {
+                  return CurrencyCard(
+                    currencyCode: resultCurrencyList.value.elementAt(index),
+                    selectedCurrencyCode: selectedCurrency.value,
+                    systemCurrencyCode: getSystemCurrencyName(context),
+                    onCurrencySelected: (value) =>
+                        selectedCurrency.value = value,
+                  );
+                },
+              ),
             ),
           ),
           if (!focusNode.hasFocus) ...[

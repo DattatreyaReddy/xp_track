@@ -15,6 +15,7 @@ class Account extends GenericIdAbstractEntity {
 
   String currencyCode;
 
+  @Index()
   int orderNumber;
 
   bool includeInBalance;
@@ -37,27 +38,57 @@ class Account extends GenericIdAbstractEntity {
     this.creditDetails,
     this.splitDetails,
   })  : assert(accountType != AccountType.credit || creditDetails != null),
-        assert(accountType != AccountType.split || splitDetails != null);
+        assert(accountType != AccountType.split || splitDetails != null),
+        super();
+
+  factory Account.fromDto({
+    int? id,
+    bool? isDeleted = false,
+    DateTime? dateCreated,
+    DateTime? lastModified,
+    required String name,
+    required int icon,
+    required int color,
+    required String currencyCode,
+    required int orderNumber,
+    required bool includeInBalance,
+    required AccountType accountType,
+    CreditDetails? creditDetails,
+    SplitDetails? splitDetails,
+  }) {
+    final Account account = Account(
+      name: name,
+      icon: icon,
+      color: color,
+      currencyCode: currencyCode,
+      orderNumber: orderNumber,
+      includeInBalance: includeInBalance,
+      accountType: accountType,
+      creditDetails: creditDetails,
+      splitDetails: splitDetails,
+    );
+    account.id = id ?? Isar.autoIncrement;
+    account.isDeleted = isDeleted ?? false;
+    account.dateCreated = dateCreated;
+    account.lastModified = lastModified;
+    return account;
+  }
 }
 
 @embedded
 class CreditDetails {
   double? limit;
 
-  int? billingCycleInDays;
-
-  DateTime? startDate;
+  int? billingDate;
 
   int? gracePeriodInDays;
 
   CreditDetails({
     this.limit,
-    this.billingCycleInDays,
-    this.startDate,
+    this.billingDate,
     this.gracePeriodInDays,
   })  : assert(limit != null && limit > 0),
-        assert(billingCycleInDays != null && billingCycleInDays > 0),
-        assert(startDate != null),
+        assert(billingDate != null && billingDate > 0 && billingDate < 32),
         assert(gracePeriodInDays != null && gracePeriodInDays > 0);
 }
 

@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
+import 'package:isar/isar.dart';
 
 import '../../constants/app_constants.dart';
 import '../../widgets/custom_circular_progress_indicator.dart';

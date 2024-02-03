@@ -7,29 +7,36 @@ import '../utils/generic_extensions.dart';
 import '../utils/isar_extensions.dart';
 
 abstract class GenericRepository<T extends GenericIdAbstractEntity> {
-  final IsarCollection<T> isarCollection;
+  final IsarCollection<T> _isarCollection;
+  final Isar isar;
 
-  GenericRepository(Isar isar) : isarCollection = isar.collection<T>();
+  GenericRepository(this.isar) : _isarCollection = isar.collection<T>();
 
   Future<List<T>> getAll() async =>
-      await isarCollection.filter().isDeletedEqualTo(false).findAll();
+      await _isarCollection.filter().isDeletedEqualTo(false).findAll();
 
   Future<T> save(T entity) async {
     entity.lastModified = DateTime.now();
     if (entity.id == Isar.autoIncrement) {
       entity.dateCreated = DateTime.now();
     }
-    final resultId = await isarCollection.put(entity);
-    return (await isarCollection.get(resultId))!;
+    final resultId = await isar.writeTxn(() => _isarCollection.put(entity));
+    return (await _isarCollection.get(resultId))!;
   }
 
-  Future<bool> delete(T entity) async {
-    if (entity.id == Isar.autoIncrement) {
+  Future<bool> delete(T entity) async => deleteById(entity.id);
+
+  Future<bool> deleteById(int? id) async {
+    if (id == null || id == Isar.autoIncrement) {
+      return false;
+    }
+    final entity = await _isarCollection.get(id);
+    if (entity == null) {
       return false;
     }
     entity.isDeleted = true;
     entity.lastModified = DateTime.now();
-    await isarCollection.put(entity);
+    await isar.writeTxn(() => _isarCollection.put(entity));
     return true;
   }
 
@@ -45,8 +52,9 @@ abstract class GenericRepository<T extends GenericIdAbstractEntity> {
         entity.dateCreated = currentTime;
       }
     }
-    final resultIds = await isarCollection.putAll(entities);
-    return (await isarCollection.getAll(resultIds)).map((e) => e!).toList();
+    final resultIds =
+        await isar.writeTxn(() => _isarCollection.putAll(entities));
+    return (await _isarCollection.getAll(resultIds)).map((e) => e!).toList();
   }
 
   Future<bool> deleteAll(List<T> entities) async {
@@ -62,11 +70,12 @@ abstract class GenericRepository<T extends GenericIdAbstractEntity> {
       entity.isDeleted = true;
       entity.lastModified = currentTime;
     }
-    await isarCollection.putAll(entities);
+
+    await isar.writeTxn(() => _isarCollection.putAll(entities));
     return true;
   }
 
   Future<PageResult<T>> page(PageRequest pageRequest) async {
-    return isarCollection.where().page(pageRequest);
+    return _isarCollection.where().page(pageRequest);
   }
 }

@@ -7,6 +7,7 @@ abstract class GenericIdAbstractEntity {
 
   DateTime? lastModified;
 
+  @Index()
   bool isDeleted;
 
   GenericIdAbstractEntity({

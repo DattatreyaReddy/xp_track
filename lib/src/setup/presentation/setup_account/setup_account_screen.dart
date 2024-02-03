@@ -4,13 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../accounts/controllers/account_controllers.dart';
 import '../../../accounts/dto/account_dto.dart';
-import '../../../common/constants/app_constants.dart';
+import '../../../accounts/widgets/account_list_tile.dart';
 import '../../../common/utils/extensions/custom_extensions.dart';
-import '../../controller/setup_controllers.dart';
+import '../../../common/widgets/label_text.dart';
 import '../../routes/routes.dart';
 import '../../widgets/intro_nav_buttons.dart';
-import '../../widgets/label_text.dart';
 import '../../widgets/responsive_intro_widget.dart';
 import 'widgets/upsert_account_dialog.dart';
 
@@ -18,26 +18,35 @@ class SetupAccountScreen extends HookConsumerWidget {
   const SetupAccountScreen({super.key});
 
   void showUpsertAccountDialog(BuildContext context, [AccountDto? account]) {
-    showDialog(
-      context: context,
-      builder: (context) => Dialog.fullscreen(
-        child: UpsertAccountDialog(stepData: account),
-      ),
-    );
+    if (context.isSmallTablet) {
+      Scaffold.of(context).openEndDrawer();
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => Dialog.fullscreen(
+          child: UpsertAccountDialog(stepData: account),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(context, ref) {
     final asyncAccountList = ref.watch(accountsProvider);
-    final accountList = useState<List<AccountDto>>([]);
-    useEffect(() {
-      asyncAccountList.whenData((accounts) {
-        accountList.value = accounts;
-      });
-      return;
-    }, [asyncAccountList]);
+    // using the value notifier to pass the account to the drawer
+    // when the user taps on an account to edit it
+    // A workaround to pass the selected account to the drawer
+    final editAccount = useValueNotifier<AccountDto?>(null);
 
     return ResponsiveIntroWidget(
+      endDrawer: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: HookBuilder(
+          builder: (context) => UpsertAccountDialog(
+            stepData: useListenable(editAccount).value,
+          ),
+        ),
+      ),
       showMiniLogoForMobile: true,
       isMobileScrollable: false,
       child: Column(
@@ -49,54 +58,36 @@ class SetupAccountScreen extends HookConsumerWidget {
             child: Material(
               child: asyncAccountList.showUiWhenData(
                 context,
-                (data) => ListView.builder(
+                (data) => ListView.separated(
+                  separatorBuilder: (context, index) => const Gap(4),
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final account = data[index];
-                    Colors.accents;
-                    return ListTile(
-                      onTap: () => showUpsertAccountDialog(context, account),
-                      visualDensity: VisualDensity.comfortable,
-                      shape: AppDimensions.rb16,
-                      tileColor: account.primaryColor,
-                      leading: CircleAvatar(
-                        backgroundColor: account.secondaryColor,
-                        child: Icon(
-                          account.iconValue,
-                          size: 24,
-                          color: account.primaryColor,
-                        ),
-                      ),
-                      title: Text(
-                        account.name,
-                        style: TextStyle(color: account.onPrimaryColor),
-                      ),
-                      subtitle: Text(
-                        account.accountType.toLocale(context),
-                        style: TextStyle(color: account.secondaryColor),
-                      ),
-                      trailing: Text(
-                        account.currencyInfo.symbol,
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: account.secondaryColor,
-                        ),
-                      ),
+                    return AccountListTile(
+                      previousAccount: data.getPrev(index),
+                      nextAccount: data.getNext(index),
+                      onTap: () {
+                        editAccount.value = account;
+                        showUpsertAccountDialog(context, account);
+                      },
+                      account: account,
                     );
                   },
                 ),
               ),
             ),
           ),
-          IntroNavButtons(
-            onPressedPrevious: () => context.pop(),
-            onPressedAdd: () {
-              showUpsertAccountDialog(context);
-            },
-            onPressedNext: () {
-              const SetupCategoryRoute().push(context);
-            },
-          ),
+          Builder(builder: (context) {
+            return IntroNavButtons(
+              onPressedPrevious: () => context.pop(),
+              onPressedAdd: () {
+                showUpsertAccountDialog(context);
+              },
+              onPressedNext: () {
+                const SetupCategoryRoute().push(context);
+              },
+            );
+          }),
         ],
       ),
     );

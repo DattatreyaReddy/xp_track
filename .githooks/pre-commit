@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "\e[33;1m%s\e[0m\n" 'Started SMEAssist Pre-Commit hook'
+printf "\e[33;1m%s\e[0m\n" 'Started XpTrack Pre-Commit hook'
 
 # Undo the stash of the files
 pop_stash_files () {
@@ -104,5 +104,5 @@ printf '%s\n' "${avar}"
 # printf "\e[33;1m%s\e[0m\n" 'Finished running Unit Tests'
 # printf '%s\n' "${avar}"
 
-printf "\e[33;1m%s\e[0m\n" 'Finished running SMEAssist Pre-hook'
+printf "\e[33;1m%s\e[0m\n" 'Finished running XpTrack Pre-hook'
 pop_stash_files

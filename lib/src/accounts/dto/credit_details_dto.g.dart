@@ -10,8 +10,7 @@ _$CreditDetailsDtoImpl _$$CreditDetailsDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$CreditDetailsDtoImpl(
       limit: (json['limit'] as num).toDouble(),
-      billingCycleInDays: json['billingCycleInDays'] as int,
-      startDate: DateTime.parse(json['startDate'] as String),
+      billingDate: json['billingDate'] as int,
       gracePeriodInDays: json['gracePeriodInDays'] as int,
     );
 
@@ -19,7 +18,6 @@ Map<String, dynamic> _$$CreditDetailsDtoImplToJson(
         _$CreditDetailsDtoImpl instance) =>
     <String, dynamic>{
       'limit': instance.limit,
-      'billingCycleInDays': instance.billingCycleInDays,
-      'startDate': instance.startDate.toIso8601String(),
+      'billingDate': instance.billingDate,
       'gracePeriodInDays': instance.gracePeriodInDays,
     };
