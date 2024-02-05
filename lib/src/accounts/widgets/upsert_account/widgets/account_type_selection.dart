@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../accounts/enums/account_type.dart';
+import '../../../enums/account_type.dart';
 
 class AccountTypeSelection extends StatelessWidget {
   const AccountTypeSelection({

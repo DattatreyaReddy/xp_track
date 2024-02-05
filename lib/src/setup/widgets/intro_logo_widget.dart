@@ -15,6 +15,7 @@ class IntroLogoWidget extends StatelessWidget {
     return Hero(
       tag: AppHero.logo,
       child: Material(
+        color: Colors.transparent,
         child: AppUtils.wrapWidgetIf(
           condition: context.isDesktopOrWider,
           wrap: (child) => Transform.scale(

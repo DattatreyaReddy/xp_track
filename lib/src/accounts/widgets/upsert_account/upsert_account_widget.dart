@@ -4,22 +4,22 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../accounts/dto/account_dto.dart';
-import '../../../../accounts/dto/credit_details_dto.dart';
-import '../../../../accounts/dto/split_details_dto.dart';
-import '../../../../accounts/enums/account_type.dart';
-import '../../../../accounts/service/account_service.dart';
-import '../../../../common/utils/extensions/custom_extensions.dart';
-import '../../../../common/utils/misc/toast.dart';
-import '../../../../core/controllers/settings_controller.dart';
-import 'account_color_selection.dart';
-import 'account_name_icon_selection.dart';
-import 'account_type_selection.dart';
-import 'upsert_credit_details.dart';
-import 'upsert_split_details.dart';
+import '../../../common/utils/extensions/custom_extensions.dart';
+import '../../../common/utils/misc/toast.dart';
+import '../../../core/controllers/settings_controller.dart';
+import '../../dto/account_dto.dart';
+import '../../dto/credit_details_dto.dart';
+import '../../dto/split_details_dto.dart';
+import '../../enums/account_type.dart';
+import '../../service/account_service.dart';
+import '../color_selection.dart';
+import '../icon_and_name_selection.dart';
+import 'widgets/account_type_selection.dart';
+import 'widgets/upsert_credit_details.dart';
+import 'widgets/upsert_split_details.dart';
 
-class UpsertAccountDialog extends HookConsumerWidget {
-  const UpsertAccountDialog({super.key, this.stepData});
+class UpsertAccountWidget extends HookConsumerWidget {
+  const UpsertAccountWidget({super.key, this.stepData});
   final AccountDto? stepData;
   @override
   Widget build(context, ref) {
@@ -65,7 +65,8 @@ class UpsertAccountDialog extends HookConsumerWidget {
                   account, () => account.value.primaryColor);
               final secondaryColor = useListenableSelector(
                   account, () => account.value.secondaryColor);
-              return AccountNameIconSelection(
+              return IconAndNameSelection(
+                labelText: context.l10n.accountName,
                 icon: iconValue,
                 name: accountName,
                 primaryColor: primaryColor,
@@ -84,7 +85,7 @@ class UpsertAccountDialog extends HookConsumerWidget {
               builder: (context) {
                 final primarySelectedColor =
                     useListenableSelector(account, () => account.value.color);
-                return AccountColorSelection(
+                return ColorSelection(
                   selectedColor: primarySelectedColor,
                   onChanged: (value) =>
                       account.value = account.value.copyWith(color: value),

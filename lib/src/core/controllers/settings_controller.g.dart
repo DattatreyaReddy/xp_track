@@ -6,6 +6,23 @@ part of 'settings_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$defaultCurrencySymbolHash() =>
+    r'4ee92605e1e08ebd02b13f3b240b3c9bcddc94d5';
+
+/// See also [defaultCurrencySymbol].
+@ProviderFor(defaultCurrencySymbol)
+final defaultCurrencySymbolProvider =
+    AutoDisposeProvider<CurrencyInfoDto?>.internal(
+  defaultCurrencySymbol,
+  name: r'defaultCurrencySymbolProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$defaultCurrencySymbolHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DefaultCurrencySymbolRef = AutoDisposeProviderRef<CurrencyInfoDto?>;
 String _$isSetupCompletedHash() => r'9cfebc518e7d282630b1cb6860008e72d8386ca5';
 
 /// See also [IsSetupCompleted].

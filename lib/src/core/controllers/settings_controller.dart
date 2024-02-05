@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../common/constants/currency_symbols.dart';
 import '../../common/constants/db_keys.dart';
+import '../../common/dto/currency_info/currency_info_dto.dart';
 import '../../common/utils/storage/local/shared_preference_utils.dart';
 
 part 'settings_controller.g.dart';
@@ -31,6 +33,10 @@ class DefaultCurrency extends _$DefaultCurrency
   @override
   String? build() => initialize(DBKey.currency);
 }
+
+@riverpod
+CurrencyInfoDto? defaultCurrencySymbol(DefaultCurrencySymbolRef ref) =>
+    supportedCurrencyMap[ref.watch(defaultCurrencyProvider)];
 
 @riverpod
 class IsDebugMode extends _$IsDebugMode with SharedPreferenceClient<bool> {

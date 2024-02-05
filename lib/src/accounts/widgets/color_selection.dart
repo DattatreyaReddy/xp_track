@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/constants/contrast_color_pairs.dart';
-import '../../../widgets/xp_circular_avatar.dart';
+import '../../common/constants/contrast_color_pairs.dart';
+import '../../setup/widgets/xp_circular_avatar.dart';
 
-class AccountColorSelection extends StatelessWidget {
-  const AccountColorSelection({
+class ColorSelection extends StatelessWidget {
+  const ColorSelection({
     super.key,
     this.height = 60,
     required this.selectedColor,

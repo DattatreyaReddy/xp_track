@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../common/utils/extensions/custom_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 class IconSelectionDialog extends HookWidget {
   const IconSelectionDialog({

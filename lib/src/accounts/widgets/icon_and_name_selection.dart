@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/utils/extensions/custom_extensions.dart';
-import '../../../widgets/xp_circular_avatar.dart';
-import 'icon_selection_dialog.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/widgets/icon_selection_dialog.dart';
+import '../../setup/widgets/xp_circular_avatar.dart';
 
-class AccountNameIconSelection extends StatelessWidget {
-  const AccountNameIconSelection({
+class IconAndNameSelection extends StatelessWidget {
+  const IconAndNameSelection({
     super.key,
+    required this.labelText,
     required this.icon,
     required this.name,
     required this.primaryColor,
@@ -17,6 +18,7 @@ class AccountNameIconSelection extends StatelessWidget {
 
   final IconData icon;
   final String name;
+  final String labelText;
   final Color primaryColor;
   final Color secondaryColor;
   final ValueChanged<IconData> onIconChanged;
@@ -32,7 +34,7 @@ class AccountNameIconSelection extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         isDense: true,
-        labelText: context.l10n.accountName,
+        labelText: labelText,
         icon: XpCircularAvatar(
           value: icon,
           onTap: () async {

@@ -30,11 +30,6 @@ class AccountRepository extends GenericRepository<Account> {
       await isar.accounts.putAll([account1, account2]);
     });
   }
-
-  Future<int> getAllAccountsCount() async => isar.accounts.count();
-
-  Future<int> getAccountsCount() async =>
-      await isar.accounts.filter().isDeletedEqualTo(false).count();
 }
 
 @riverpod

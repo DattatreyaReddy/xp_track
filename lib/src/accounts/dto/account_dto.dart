@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../common/constants/contrast_color_pairs.dart';
 import '../../common/constants/currency_symbols.dart';
 import '../../common/dto/currency_info/currency_info_dto.dart';
 import '../../common/utils/misc/app_utils.dart';
 import '../domain/account.dart';
 import '../enums/account_type.dart';
 import 'credit_details_dto.dart';
+import 'icon_and_color_converters.dart';
 import 'split_details_dto.dart';
 
 part 'account_dto.freezed.dart';
 part 'account_dto.g.dart';
 
 @freezed
-class AccountDto with _$AccountDto {
+class AccountDto with _$AccountDto, IconAndColorConverters {
   AccountDto._();
   factory AccountDto({
     int? accountId,
@@ -32,6 +32,9 @@ class AccountDto with _$AccountDto {
     SplitDetailsDto? splitDetails,
   }) = _AccountDto;
 
+  factory AccountDto.fromJson(Map<String, dynamic> json) =>
+      _$AccountDtoFromJson(json);
+
   factory AccountDto.empty(
     String currencyCode,
   ) =>
@@ -47,9 +50,6 @@ class AccountDto with _$AccountDto {
         splitDetails: null,
       );
 
-  factory AccountDto.fromJson(Map<String, dynamic> json) =>
-      _$AccountDtoFromJson(json);
-
   factory AccountDto.fromDomain(Account account) => AccountDto(
         accountId: account.id,
         isDeleted: account.isDeleted,
@@ -62,11 +62,11 @@ class AccountDto with _$AccountDto {
         orderNumber: account.orderNumber,
         includeInBalance: account.includeInBalance,
         accountType: account.accountType,
-        creditDetails: AppUtils.wrapIfNotNull(
+        creditDetails: AppUtils.onNotNull(
           account.creditDetails,
           CreditDetailsDto.fromDomain,
         ),
-        splitDetails: AppUtils.wrapIfNotNull(
+        splitDetails: AppUtils.onNotNull(
           account.splitDetails,
           SplitDetailsDto.fromDomain,
         ),
@@ -84,24 +84,9 @@ class AccountDto with _$AccountDto {
         orderNumber: orderNumber,
         includeInBalance: includeInBalance,
         accountType: accountType,
-        creditDetails: AppUtils.wrapIfNotNull(
-          creditDetails,
-          (e) => e.toDomain,
-        ),
-        splitDetails: AppUtils.wrapIfNotNull(
-          splitDetails,
-          (e) => e.toDomain,
-        ),
+        creditDetails: creditDetails,
+        splitDetails: splitDetails,
       );
-
-  Color get primaryColor => Color(color);
-
-  Color get secondaryColor => getSecondaryColor(color);
-
-  Color get onPrimaryColor =>
-      primaryColor.computeLuminance() > 0.5 ? Colors.black : Colors.white;
-
-  IconData get iconValue => IconData(icon, fontFamily: 'MaterialIcons');
 
   CurrencyInfoDto get currencyInfo => supportedCurrencyMap[currencyCode]!;
 }

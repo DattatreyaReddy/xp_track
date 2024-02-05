@@ -47,7 +47,7 @@ abstract class AppUtils {
     return elseValue;
   }
 
-  static U? wrapIfNotNull<T, U>(
+  static U? onNotNull<T, U>(
     T? value,
     U Function(T) wrap,
   ) {

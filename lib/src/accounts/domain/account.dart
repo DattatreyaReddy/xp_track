@@ -1,6 +1,9 @@
 import 'package:isar/isar.dart';
 
+import '../../common/utils/extensions/custom_extensions.dart';
 import '../../core/storage/isar/domain/generic_id_abstract_entity.dart';
+import '../dto/credit_details_dto.dart';
+import '../dto/split_details_dto.dart';
 import '../enums/account_type.dart';
 
 part 'account.g.dart';
@@ -53,8 +56,8 @@ class Account extends GenericIdAbstractEntity {
     required int orderNumber,
     required bool includeInBalance,
     required AccountType accountType,
-    CreditDetails? creditDetails,
-    SplitDetails? splitDetails,
+    CreditDetailsDto? creditDetails,
+    SplitDetailsDto? splitDetails,
   }) {
     final Account account = Account(
       name: name,
@@ -64,11 +67,11 @@ class Account extends GenericIdAbstractEntity {
       orderNumber: orderNumber,
       includeInBalance: includeInBalance,
       accountType: accountType,
-      creditDetails: creditDetails,
-      splitDetails: splitDetails,
+      creditDetails: creditDetails?.toDomain,
+      splitDetails: splitDetails?.toDomain,
     );
     account.id = id ?? Isar.autoIncrement;
-    account.isDeleted = isDeleted ?? false;
+    account.isDeleted = isDeleted.ifNull();
     account.dateCreated = dateCreated;
     account.lastModified = lastModified;
     return account;

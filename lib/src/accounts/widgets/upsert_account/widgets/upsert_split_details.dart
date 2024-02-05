@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../accounts/dto/split_details_dto.dart';
 import '../../../../common/utils/extensions/custom_extensions.dart';
 import '../../../../common/widgets/number_picker/number_picker_with_label.dart';
+import '../../../dto/split_details_dto.dart';
 
 class UpsertSplitDetails extends StatelessWidget {
   const UpsertSplitDetails({

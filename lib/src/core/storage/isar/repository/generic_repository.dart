@@ -12,8 +12,20 @@ abstract class GenericRepository<T extends GenericIdAbstractEntity> {
 
   GenericRepository(this.isar) : _isarCollection = isar.collection<T>();
 
+  Future<int> getCount({bool includeDeleted = false}) async {
+    if (includeDeleted) {
+      return await _isarCollection.count();
+    }
+    return await _isarCollection.filter().isDeletedEqualTo(false).count();
+  }
+
   Future<List<T>> getAll() async =>
       await _isarCollection.filter().isDeletedEqualTo(false).findAll();
+
+  Stream<List<T>> watchAll() => _isarCollection
+      .filter()
+      .isDeletedEqualTo(false)
+      .watch(fireImmediately: true);
 
   Future<T> save(T entity) async {
     entity.lastModified = DateTime.now();

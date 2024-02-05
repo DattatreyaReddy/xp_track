@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../presentation/introduction_screen.dart';
-import '../presentation/setup_account/setup_account_screen.dart';
+import '../presentation/setup_account_screen.dart';
 import '../presentation/setup_category_screen.dart';
 import '../presentation/setup_currency_screen.dart';
 import '../presentation/setup_user_name_screen.dart';

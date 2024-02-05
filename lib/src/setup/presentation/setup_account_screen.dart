@@ -4,15 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../accounts/controllers/account_controllers.dart';
-import '../../../accounts/dto/account_dto.dart';
-import '../../../accounts/widgets/account_list_tile.dart';
-import '../../../common/utils/extensions/custom_extensions.dart';
-import '../../../common/widgets/label_text.dart';
-import '../../routes/routes.dart';
-import '../../widgets/intro_nav_buttons.dart';
-import '../../widgets/responsive_intro_widget.dart';
-import 'widgets/upsert_account_dialog.dart';
+import '../../accounts/controllers/account_controllers.dart';
+import '../../accounts/dto/account_dto.dart';
+import '../../accounts/widgets/account_list_tile.dart';
+import '../../accounts/widgets/upsert_account/upsert_account_widget.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/widgets/label_text.dart';
+import '../routes/routes.dart';
+import '../widgets/intro_nav_buttons.dart';
+import '../widgets/responsive_intro_widget.dart';
 
 class SetupAccountScreen extends HookConsumerWidget {
   const SetupAccountScreen({super.key});
@@ -24,7 +24,7 @@ class SetupAccountScreen extends HookConsumerWidget {
       showDialog(
         context: context,
         builder: (context) => Dialog.fullscreen(
-          child: UpsertAccountDialog(stepData: account),
+          child: UpsertAccountWidget(stepData: account),
         ),
       );
     }
@@ -42,7 +42,7 @@ class SetupAccountScreen extends HookConsumerWidget {
       endDrawer: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
         child: HookBuilder(
-          builder: (context) => UpsertAccountDialog(
+          builder: (context) => UpsertAccountWidget(
             stepData: useListenable(editAccount).value,
           ),
         ),
@@ -77,17 +77,15 @@ class SetupAccountScreen extends HookConsumerWidget {
               ),
             ),
           ),
-          Builder(builder: (context) {
-            return IntroNavButtons(
+          Builder(
+            builder: (context) => IntroNavButtons(
               onPressedPrevious: () => context.pop(),
-              onPressedAdd: () {
-                showUpsertAccountDialog(context);
-              },
+              onPressedAdd: () => showUpsertAccountDialog(context),
               onPressedNext: () {
                 const SetupCategoryRoute().push(context);
               },
-            );
-          }),
+            ),
+          ),
         ],
       ),
     );
