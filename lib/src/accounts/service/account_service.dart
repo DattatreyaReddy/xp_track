@@ -34,6 +34,5 @@ class AccountService {
 }
 
 @riverpod
-AccountService accountService(AccountServiceRef ref) {
-  return AccountService(ref.watch(accountRepositoryProvider));
-}
+AccountService accountService(AccountServiceRef ref) =>
+    AccountService(ref.watch(accountRepositoryProvider));

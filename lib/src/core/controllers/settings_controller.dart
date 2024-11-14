@@ -8,13 +8,6 @@ import '../../common/utils/storage/local/shared_preference_utils.dart';
 part 'settings_controller.g.dart';
 
 @riverpod
-class IsSetupCompleted extends _$IsSetupCompleted
-    with SharedPreferenceClient<bool> {
-  @override
-  bool? build() => initialize(DBKey.isSetupCompleted);
-}
-
-@riverpod
 class UserName extends _$UserName with SharedPreferenceClient<String> {
   @override
   String? build() => initialize(DBKey.userName);

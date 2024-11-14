@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../common/constants/app_enums.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../common/utils/misc/app_utils.dart';
 import '../../common/widgets/logo/xp_logo.dart';
@@ -11,7 +12,7 @@ class ResponsiveIntroWidget extends StatelessWidget {
     super.key,
     this.child,
     this.showMiniLogoForMobile = false,
-    this.isMobileScrollable = true,
+    this.isMobileScrollable = false,
     this.drawer,
     this.endDrawer,
   });
@@ -48,7 +49,7 @@ class ResponsiveIntroWidget extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(bottom: 128),
-                    child: IntroLogoWidget(),
+                    child: Hero(tag: AppHero.logo, child: IntroLogoWidget()),
                   ),
                   const Gap.expand(16),
                   if (newChild != null)
@@ -76,11 +77,14 @@ class ResponsiveIntroWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       if (showMiniLogoForMobile)
-                        const XpLogo()
+                        Hero(tag: AppHero.logo, child: const XpLogo())
                       else
                         SizedBox(
                           height: context.heightScale(.5),
-                          child: const IntroLogoWidget(),
+                          child: Hero(
+                            tag: AppHero.logo,
+                            child: const IntroLogoWidget(),
+                          ),
                         ),
                       const Gap(16),
                       if (newChild != null)

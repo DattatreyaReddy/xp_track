@@ -20,6 +20,21 @@ final accountsProvider = AutoDisposeStreamProvider<List<AccountDto>>.internal(
 );
 
 typedef AccountsRef = AutoDisposeStreamProviderRef<List<AccountDto>>;
+String _$accountSelectedHash() => r'6189560542e692b9dc9dd477dde9307294e93878';
+
+/// See also [accountSelected].
+@ProviderFor(accountSelected)
+final accountSelectedProvider = AutoDisposeProvider<bool>.internal(
+  accountSelected,
+  name: r'accountSelectedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$accountSelectedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AccountSelectedRef = AutoDisposeProviderRef<bool>;
 String _$categoriesHash() => r'13b39808efdcc52d4c136761d78f1729ce8051ea';
 
 /// See also [categories].
@@ -35,5 +50,20 @@ final categoriesProvider =
 );
 
 typedef CategoriesRef = AutoDisposeStreamProviderRef<List<CategoryDto>>;
+String _$categorySelectedHash() => r'0ee5d9913077a2ced04d099c18dd2da804a36031';
+
+/// See also [categorySelected].
+@ProviderFor(categorySelected)
+final categorySelectedProvider = AutoDisposeProvider<bool>.internal(
+  categorySelected,
+  name: r'categorySelectedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$categorySelectedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CategorySelectedRef = AutoDisposeProviderRef<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

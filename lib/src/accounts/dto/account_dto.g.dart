@@ -8,7 +8,7 @@ part of 'account_dto.dart';
 
 _$AccountDtoImpl _$$AccountDtoImplFromJson(Map<String, dynamic> json) =>
     _$AccountDtoImpl(
-      accountId: json['accountId'] as int?,
+      accountId: (json['accountId'] as num?)?.toInt(),
       isDeleted: json['isDeleted'] as bool?,
       dateCreated: json['dateCreated'] == null
           ? null
@@ -17,10 +17,10 @@ _$AccountDtoImpl _$$AccountDtoImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['lastModified'] as String),
       name: json['name'] as String,
-      icon: json['icon'] as int,
-      color: json['color'] as int,
+      icon: (json['icon'] as num).toInt(),
+      color: (json['color'] as num).toInt(),
       currencyCode: json['currencyCode'] as String,
-      orderNumber: json['orderNumber'] as int,
+      orderNumber: (json['orderNumber'] as num).toInt(),
       includeInBalance: json['includeInBalance'] as bool,
       accountType: $enumDecode(_$AccountTypeEnumMap, json['accountType']),
       creditDetails: json['creditDetails'] == null

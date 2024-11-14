@@ -39,8 +39,7 @@ class UpsertAccountWidget extends HookConsumerWidget {
           onPressed: () async {
             if (account.value.name.isBlank) {
               ref.watch(toastProvider(context)).showError(
-                    context.l10n.nIsRequired(context.l10n.accountName),
-                  );
+                  context.l10n.nIsRequired(context.l10n.accountName));
               return;
             }
             await ref.read(accountServiceProvider).saveAccount(account.value);
@@ -135,19 +134,19 @@ class UpsertAccountWidget extends HookConsumerWidget {
             child: HookBuilder(builder: (context) {
               final accountType = useListenableSelector(
                   account, () => account.value.accountType);
-              useListenableSelector(account, () => account.value.splitDetails);
-              useListenableSelector(account, () => account.value.creditDetails);
+              final splitDetails = useListenableSelector(
+                  account, () => account.value.splitDetails);
+              final creditDetails = useListenableSelector(
+                  account, () => account.value.creditDetails);
               return switch (accountType) {
                 AccountType.debit => const SizedBox.shrink(),
                 AccountType.credit => UpsertCreditDetails(
-                    creditDetailsDto:
-                        account.value.creditDetails ?? CreditDetailsDto.empty(),
+                    creditDetailsDto: creditDetails ?? CreditDetailsDto.empty(),
                     onChanged: (value) => account.value =
                         account.value.copyWith(creditDetails: value),
                   ),
                 AccountType.split => UpsertSplitDetails(
-                    splitDetailsDto:
-                        account.value.splitDetails ?? SplitDetailsDto.empty(),
+                    splitDetailsDto: splitDetails ?? SplitDetailsDto.empty(),
                     onChanged: (value) => account.value =
                         account.value.copyWith(splitDetails: value),
                   ),

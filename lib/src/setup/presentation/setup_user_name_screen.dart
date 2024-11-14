@@ -24,6 +24,7 @@ class SetupUserNameScreen extends HookConsumerWidget {
       return null;
     }, [stepUserName]);
     return ResponsiveIntroWidget(
+      isMobileScrollable: true,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +56,7 @@ class SetupUserNameScreen extends HookConsumerWidget {
                 () {
                   final value = userNameController.text.trim();
                   ref.read(userNameProvider.notifier).update(value);
-                  const SetupCurrencyRoute().push(context);
+                  const SetupCurrencyRoute().go(context);
                 },
               ),
             );

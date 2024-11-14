@@ -8,7 +8,7 @@ part of 'category_dto.dart';
 
 _$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
     _$CategoryDtoImpl(
-      categoryId: json['categoryId'] as int?,
+      categoryId: (json['categoryId'] as num?)?.toInt(),
       isDeleted: json['isDeleted'] as bool?,
       dateCreated: json['dateCreated'] == null
           ? null
@@ -17,8 +17,8 @@ _$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['lastModified'] as String),
       name: json['name'] as String,
-      icon: json['icon'] as int,
-      color: json['color'] as int,
+      icon: (json['icon'] as num).toInt(),
+      color: (json['color'] as num).toInt(),
       includeInBalance: json['includeInBalance'] as bool,
     );
 

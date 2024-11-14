@@ -9,7 +9,7 @@ part of 'split_details_dto.dart';
 _$SplitDetailsDtoImpl _$$SplitDetailsDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$SplitDetailsDtoImpl(
-      splitInto: json['splitInto'] as int,
+      splitInto: (json['splitInto'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$SplitDetailsDtoImplToJson(

@@ -48,7 +48,6 @@ class SetupAccountScreen extends HookConsumerWidget {
         ),
       ),
       showMiniLogoForMobile: true,
-      isMobileScrollable: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,9 +80,7 @@ class SetupAccountScreen extends HookConsumerWidget {
             builder: (context) => IntroNavButtons(
               onPressedPrevious: () => context.pop(),
               onPressedAdd: () => showUpsertAccountDialog(context),
-              onPressedNext: () {
-                const SetupCategoryRoute().push(context);
-              },
+              onPressedNext: () => const SetupCategoryRoute().go(context),
             ),
           ),
         ],

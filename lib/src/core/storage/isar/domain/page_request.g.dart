@@ -8,8 +8,8 @@ part of 'page_request.dart';
 
 _$PageRequestImpl _$$PageRequestImplFromJson(Map<String, dynamic> json) =>
     _$PageRequestImpl(
-      page: json['page'] as int,
-      size: json['size'] as int,
+      page: (json['page'] as num).toInt(),
+      size: (json['size'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$PageRequestImplToJson(_$PageRequestImpl instance) =>

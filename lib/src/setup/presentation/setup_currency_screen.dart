@@ -56,9 +56,11 @@ class SetupCurrencyScreen extends HookConsumerWidget {
       }
       if (selectedCurrency.value.isBlank) {
         Future.microtask(() {
-          final systemCurrency = getSystemCurrencyName(context);
-          if (systemCurrency.isNotBlank) {
-            selectedCurrency.value = systemCurrency;
+          if (context.mounted) {
+            final systemCurrency = getSystemCurrencyName(context);
+            if (systemCurrency.isNotBlank) {
+              selectedCurrency.value = systemCurrency;
+            }
           }
         });
       }
@@ -84,7 +86,6 @@ class SetupCurrencyScreen extends HookConsumerWidget {
 
     return ResponsiveIntroWidget(
       showMiniLogoForMobile: true,
-      isMobileScrollable: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -149,7 +150,7 @@ class SetupCurrencyScreen extends HookConsumerWidget {
                 ref
                     .read(defaultCurrencyProvider.notifier)
                     .update(selectedCurrency.value);
-                const SetupAccountRoute().push(context);
+                const SetupAccountRoute().go(context);
               },
             )
           ]

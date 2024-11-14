@@ -23,22 +23,6 @@ final defaultCurrencySymbolProvider =
 );
 
 typedef DefaultCurrencySymbolRef = AutoDisposeProviderRef<CurrencyInfoDto?>;
-String _$isSetupCompletedHash() => r'9cfebc518e7d282630b1cb6860008e72d8386ca5';
-
-/// See also [IsSetupCompleted].
-@ProviderFor(IsSetupCompleted)
-final isSetupCompletedProvider =
-    AutoDisposeNotifierProvider<IsSetupCompleted, bool?>.internal(
-  IsSetupCompleted.new,
-  name: r'isSetupCompletedProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$isSetupCompletedHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$IsSetupCompleted = AutoDisposeNotifier<bool?>;
 String _$userNameHash() => r'af96dd4170b439889373604b76f1cc03612d5478';
 
 /// See also [UserName].

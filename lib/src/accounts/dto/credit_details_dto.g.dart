@@ -10,8 +10,8 @@ _$CreditDetailsDtoImpl _$$CreditDetailsDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$CreditDetailsDtoImpl(
       limit: (json['limit'] as num).toDouble(),
-      billingDate: json['billingDate'] as int,
-      gracePeriodInDays: json['gracePeriodInDays'] as int,
+      billingDate: (json['billingDate'] as num).toInt(),
+      gracePeriodInDays: (json['gracePeriodInDays'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CreditDetailsDtoImplToJson(

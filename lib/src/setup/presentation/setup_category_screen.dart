@@ -10,7 +10,7 @@ import '../../accounts/widgets/category_list_tile.dart';
 import '../../accounts/widgets/upsert_category/upsert_category_widget.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../common/widgets/label_text.dart';
-import '../../core/controllers/settings_controller.dart';
+import '../controller/setup_controller.dart';
 import '../widgets/intro_nav_buttons.dart';
 import '../widgets/responsive_intro_widget.dart';
 
@@ -47,7 +47,6 @@ class SetupCategoryScreen extends HookConsumerWidget {
         ),
       ),
       showMiniLogoForMobile: true,
-      isMobileScrollable: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -79,7 +78,7 @@ class SetupCategoryScreen extends HookConsumerWidget {
               onPressedPrevious: () => context.pop(),
               onPressedAdd: () => showUpsertCategoryDialog(context),
               onPressedNext: () =>
-                  ref.read(isSetupCompletedProvider.notifier).update(true),
+                  ref.read(hasSetupCompletedProvider.notifier).update(true),
             ),
           ),
         ],

@@ -4,11 +4,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../home/routes/routes.dart' as home;
+import '../../setup/controller/setup_controller.dart';
 import '../../setup/routes/routes.dart' as setup;
 import '../dto/app_config.dart';
 import '../routes/router_notifier/router_notifier.dart';
 import '../routes/routes.dart' as core;
-import 'settings_controller.dart';
 
 part 'router_controller.g.dart';
 
@@ -41,9 +41,9 @@ GoRouter routerConfig(RouterConfigRef ref) {
 class AppConfigState extends _$AppConfigState {
   @override
   AppConfig build() {
-    ref.watch(isSetupCompletedProvider);
+    ref.watch(hasSetupCompletedProvider);
     Future.delayed(const Duration(seconds: 1), () {
-      final isSetupCompleted = ref.read(isSetupCompletedProvider);
+      final isSetupCompleted = ref.read(hasSetupCompletedProvider);
       if (isSetupCompleted.ifNull()) {
         state = AppConfig.home();
       } else {

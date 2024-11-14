@@ -20,7 +20,7 @@ final routerConfigProvider = AutoDisposeProvider<GoRouter>.internal(
 );
 
 typedef RouterConfigRef = AutoDisposeProviderRef<GoRouter>;
-String _$appConfigStateHash() => r'5a243d7484f6100ea2afc0750f061aa461be354a';
+String _$appConfigStateHash() => r'cfcd36522d20154106f13ced82a4bdd499bb2a0c';
 
 /// See also [AppConfigState].
 @ProviderFor(AppConfigState)

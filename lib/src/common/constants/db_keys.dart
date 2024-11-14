@@ -7,6 +7,7 @@ enum DBKey {
   locale('LOCALE', null),
   currency('CURRENCY', null),
   isSetupCompleted('IS_SETUP_COMPLETED', false),
+  isSetupStarted('IS_SETUP_STARTED', false),
   userName('USER_NAME', null),
   selectedLocale('SELECTED_LOCALE', null),
   isDebugMode('IS_DEBUG_MODE', false),

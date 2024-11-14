@@ -18,7 +18,7 @@ class RouterNotifier extends _$RouterNotifier implements Listenable {
   void build() {
     // this watch will rebuild the notifier when the auth state changes
     ref.watch(appConfigStateProvider);
-    ref.listenSelf((_, next) {
+    listenSelf((_, next) {
       routerListener?.call();
     });
     return;
