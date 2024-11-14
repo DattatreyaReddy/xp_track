@@ -1,16 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:tekartik_app_flutter_sembast/setup/sembast_flutter.dart';
 
 import '../extensions/custom_extensions.dart';
+import 'custom_types.dart';
 
 abstract class AppUtils {
-  static String? getPanFromGst(String gst) {
-    return gst.isBlank || gst.length < 10
-        ? null
-        : gst.substring(2, min(12, gst.length)).toUpperCase();
-  }
-
   static Widget wrapWidgetIf({
     bool? condition,
     Widget Function(Widget)? wrap,
@@ -56,4 +50,23 @@ abstract class AppUtils {
     }
     return null;
   }
+
+// List<RecordSnapshot<int, Map<String, Object?>>
+  static E? Function(RecordSnapshot<T, Map<String, Object?>>?)
+      convertSnap<T, E>(E Function(JsonObject) constructor) =>
+          (RecordSnapshot<T, Map<String, Object?>>? event) {
+            if (event == null) return null;
+            return constructor(event.value);
+          };
+  static E Function(RecordSnapshot<T, JsonObject>) convertSnapNonNull<T, E>(
+          E Function(JsonObject) constructor) =>
+      (event) => constructor(event.value);
+
+  static List<E> Function(List<RecordSnapshot<T, JsonObject>>)
+      convertSnaps<T, E>(E Function(JsonObject) constructor) =>
+          (event) => event.map(convertSnapNonNull(constructor)).toList();
+
+  static T? Function(JsonObject? value) convertGet<T>(
+          T Function(JsonObject) fromJson) =>
+      (value) => value != null ? fromJson(value) : null;
 }

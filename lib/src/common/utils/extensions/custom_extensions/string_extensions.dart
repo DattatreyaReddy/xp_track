@@ -5,6 +5,8 @@ extension NullableStringExtensions on String? {
 
   bool get isBlank => isNull || this!.isEmpty;
 
+  bool get isDbKeyHolder => isBlank || this == kDbKeyHolder;
+
   String? get normalized => isBlank ? null : (this!.trim()).toUpperCase();
 
   bool get isNotBlank => !isBlank;

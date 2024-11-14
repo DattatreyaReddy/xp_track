@@ -21,7 +21,9 @@ mixin _$PageResult<T> {
   int get totalPages => throw _privateConstructorUsedError;
   int get totalElements => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageResultCopyWith<T, PageResult<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$PageResultCopyWithImpl<T, $Res, $Val extends PageResult<T>>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -79,6 +83,8 @@ class _$PageResultCopyWithImpl<T, $Res, $Val extends PageResult<T>>
     ) as $Val);
   }
 
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageRequestCopyWith<$Res> get pageRequest {
@@ -114,6 +120,8 @@ class __$$PageResultImplCopyWithImpl<T, $Res>
       _$PageResultImpl<T> _value, $Res Function(_$PageResultImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -195,7 +203,9 @@ class _$PageResultImpl<T> implements _PageResult<T> {
       totalPages,
       totalElements);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageResultImplCopyWith<T, _$PageResultImpl<T>> get copyWith =>
@@ -217,8 +227,11 @@ abstract class _PageResult<T> implements PageResult<T> {
   int get totalPages;
   @override
   int get totalElements;
+
+  /// Create a copy of PageResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageResultImplCopyWith<T, _$PageResultImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

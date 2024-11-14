@@ -1,38 +1,52 @@
-import 'package:isar/isar.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:tekartik_app_flutter_sembast/setup/sembast_flutter.dart';
 
 import '../../common/controllers/common_controllers.dart';
+import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/utils/misc/app_utils.dart';
 import '../../core/storage/isar/repository/generic_repository.dart';
 import '../domain/account.dart';
 
 part 'account_repository.g.dart';
 
 class AccountRepository extends GenericRepository<Account> {
-  AccountRepository(super.isar);
+  AccountRepository(Database db) : super(db, "Account", Account.fromJson);
 
-  Stream<List<Account>> getAllOrderByOrderNumber() => isar.accounts
-      .filter()
-      .isDeletedEqualTo(false)
-      .sortByOrderNumber()
-      .watch(fireImmediately: true);
+  @override
+  Future<void> save(Account entity, [DatabaseClient? dbClient]) async {
+    return wrap(dbClient, (txn) async {
+      if (entity.id.isDbKeyHolder) {
+        final orderNumber = DateTime.now().millisecondsSinceEpoch;
+        entity = entity.copyWith(orderNumber: orderNumber);
+      }
+      await super.save(entity, txn);
+    });
+  }
 
-  Future<void> swapAccountsOrder(int accountId1, int accountId2) async {
-    final account1 = await isar.accounts.get(accountId1);
-    final account2 = await isar.accounts.get(accountId2);
-    if (account1 == null || account2 == null) {
-      return;
-    }
-    await isar.writeTxn(() async {
+  Stream<List<Account>> getAllOrderByOrderNumber() => store
+      .query(
+        finder: Finder(sortOrders: [SortOrder(AccountField.orderNumber.name)]),
+      )
+      .onSnapshots(database)
+      .map(AppUtils.convertSnaps(fromJson));
+
+  Future<void> swapAccountsOrder(String accountId1, String accountId2) async {
+    await database.transaction((txn) async {
+      final account1 = await getById(accountId1, txn);
+      final account2 = await getById(accountId2, txn);
+      if (account1 == null || account2 == null) {
+        return;
+      }
       // Swap order numbers of the accounts
-      final tempOrderNumber = account1.orderNumber;
-      account1.orderNumber = account2.orderNumber;
-      account2.orderNumber = tempOrderNumber;
-      await isar.accounts.putAll([account1, account2]);
+      saveAll([
+        account1.copyWith(orderNumber: account2.orderNumber),
+        account2.copyWith(orderNumber: account1.orderNumber),
+      ], txn);
     });
   }
 }
 
 @riverpod
-AccountRepository accountRepository(AccountRepositoryRef ref) {
-  return AccountRepository(ref.watch(isarClientProvider));
-}
+AccountRepository accountRepository(Ref ref) =>
+    AccountRepository(ref.watch(dbProvider));

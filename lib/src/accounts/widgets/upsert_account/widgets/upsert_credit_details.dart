@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/utils/extensions/custom_extensions.dart';
 import '../../../../common/widgets/number_picker/number_picker_with_label.dart';
-import '../../../dto/credit_details_dto.dart';
+import '../../../domain/account.dart';
 
 class UpsertCreditDetails extends StatelessWidget {
   const UpsertCreditDetails({
@@ -10,8 +10,8 @@ class UpsertCreditDetails extends StatelessWidget {
     required this.creditDetailsDto,
     required this.onChanged,
   });
-  final CreditDetailsDto creditDetailsDto;
-  final ValueChanged<CreditDetailsDto> onChanged;
+  final CreditDetails creditDetailsDto;
+  final ValueChanged<CreditDetails> onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(

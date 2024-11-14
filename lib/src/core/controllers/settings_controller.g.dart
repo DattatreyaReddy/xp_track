@@ -7,7 +7,7 @@ part of 'settings_controller.dart';
 // **************************************************************************
 
 String _$defaultCurrencySymbolHash() =>
-    r'4ee92605e1e08ebd02b13f3b240b3c9bcddc94d5';
+    r'b6c6909cdb841d93dcf160f2b901fb71da601985';
 
 /// See also [defaultCurrencySymbol].
 @ProviderFor(defaultCurrencySymbol)
@@ -22,6 +22,8 @@ final defaultCurrencySymbolProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef DefaultCurrencySymbolRef = AutoDisposeProviderRef<CurrencyInfoDto?>;
 String _$userNameHash() => r'af96dd4170b439889373604b76f1cc03612d5478';
 
@@ -86,4 +88,4 @@ final isDebugModeProvider =
 
 typedef _$IsDebugMode = AutoDisposeNotifier<bool?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

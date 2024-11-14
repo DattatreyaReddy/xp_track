@@ -1,7 +1,7 @@
-import 'package:isar/isar.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../dto/account_dto.dart';
+import '../domain/account.dart';
 import '../repository/account_repository.dart';
 
 part 'account_service.g.dart';
@@ -11,28 +11,19 @@ class AccountService {
 
   AccountService(this._repository);
 
-  Future<void> swapAccountsOrder(int accountId1, int accountId2) async =>
+  Future<void> swapAccountsOrder(String accountId1, String accountId2) async =>
       await _repository.swapAccountsOrder(accountId1, accountId2);
 
-  Future<AccountDto> saveAccount(AccountDto account) async {
-    final accountDomain = account.toDomain;
-    if (accountDomain.id == Isar.autoIncrement) {
-      accountDomain.orderNumber =
-          await _repository.getCount(includeDeleted: true);
-    }
+  Future<void> saveAccount(Account account) async =>
+      await _repository.save(account);
 
-    final savedAccount = await _repository.save(accountDomain);
-    return AccountDto.fromDomain(savedAccount);
-  }
-
-  Future<bool> deleteAccount(int? accountId) async =>
+  Future<bool> deleteAccount(String accountId) async =>
       await _repository.deleteById(accountId);
 
-  Stream<List<AccountDto>> getAccountsStream() => _repository
-      .getAllOrderByOrderNumber()
-      .map((event) => event.map((e) => AccountDto.fromDomain(e)).toList());
+  Stream<List<Account>> getAccountsStream() =>
+      _repository.getAllOrderByOrderNumber();
 }
 
 @riverpod
-AccountService accountService(AccountServiceRef ref) =>
+AccountService accountService(Ref ref) =>
     AccountService(ref.watch(accountRepositoryProvider));

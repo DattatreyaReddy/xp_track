@@ -7,9 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../common/utils/extensions/custom_extensions.dart';
 import '../../../common/utils/misc/toast.dart';
 import '../../../core/controllers/settings_controller.dart';
-import '../../dto/account_dto.dart';
-import '../../dto/credit_details_dto.dart';
-import '../../dto/split_details_dto.dart';
+import '../../domain/account.dart';
 import '../../enums/account_type.dart';
 import '../../service/account_service.dart';
 import '../color_selection.dart';
@@ -20,12 +18,12 @@ import 'widgets/upsert_split_details.dart';
 
 class UpsertAccountWidget extends HookConsumerWidget {
   const UpsertAccountWidget({super.key, this.stepData});
-  final AccountDto? stepData;
+  final Account? stepData;
   @override
   Widget build(context, ref) {
     final defaultCurrency = ref.watch(defaultCurrencyProvider)!;
     final account =
-        useValueNotifier(stepData ?? AccountDto.empty(defaultCurrency));
+        useValueNotifier(stepData ?? Account.empty(defaultCurrency));
     return Scaffold(
       appBar: AppBar(
         leading: CloseButton(onPressed: () => context.pop()),
@@ -141,12 +139,12 @@ class UpsertAccountWidget extends HookConsumerWidget {
               return switch (accountType) {
                 AccountType.debit => const SizedBox.shrink(),
                 AccountType.credit => UpsertCreditDetails(
-                    creditDetailsDto: creditDetails ?? CreditDetailsDto.empty(),
+                    creditDetailsDto: creditDetails ?? CreditDetails.empty(),
                     onChanged: (value) => account.value =
                         account.value.copyWith(creditDetails: value),
                   ),
                 AccountType.split => UpsertSplitDetails(
-                    splitDetailsDto: splitDetails ?? SplitDetailsDto.empty(),
+                    splitDetailsDto: splitDetails ?? SplitDetails.empty(),
                     onChanged: (value) => account.value =
                         account.value.copyWith(splitDetails: value),
                   ),

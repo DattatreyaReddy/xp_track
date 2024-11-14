@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../accounts/controllers/account_controllers.dart';
-import '../../accounts/dto/category_dto.dart';
+import '../../accounts/domain/category.dart';
 import '../../accounts/widgets/category_list_tile.dart';
 import '../../accounts/widgets/upsert_category/upsert_category_widget.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
@@ -17,7 +17,7 @@ import '../widgets/responsive_intro_widget.dart';
 class SetupCategoryScreen extends HookConsumerWidget {
   const SetupCategoryScreen({super.key});
 
-  void showUpsertCategoryDialog(BuildContext context, [CategoryDto? category]) {
+  void showUpsertCategoryDialog(BuildContext context, [Category? category]) {
     if (context.isSmallTablet) {
       Scaffold.of(context).openEndDrawer();
     } else {
@@ -36,7 +36,7 @@ class SetupCategoryScreen extends HookConsumerWidget {
     // using the value notifier to pass the category to the drawer
     // when the user taps on an category to edit it
     // A workaround to pass the selected category to the drawer
-    final editCategory = useValueNotifier<CategoryDto?>(null);
+    final editCategory = useValueNotifier<Category?>(null);
     return ResponsiveIntroWidget(
       endDrawer: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),

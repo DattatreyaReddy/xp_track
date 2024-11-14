@@ -47,6 +47,9 @@ extension IterableExtensions<T> on Iterable<T>? {
     final newList = this?.filterNulls;
     return newList.isNotBlank ? newList!.join('/').wrap() : null;
   }
+
+  T? get getRandom =>
+      isNull ? null : this!.elementAt(Random().nextInt(this!.length));
 }
 
 extension NullableIterableExtensions<T> on Iterable<T?> {

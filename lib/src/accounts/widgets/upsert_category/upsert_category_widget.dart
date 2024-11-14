@@ -6,17 +6,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../common/utils/extensions/custom_extensions.dart';
 import '../../../common/utils/misc/toast.dart';
-import '../../dto/category_dto.dart';
+import '../../domain/category.dart';
 import '../../service/category_service.dart';
 import '../color_selection.dart';
 import '../icon_and_name_selection.dart';
 
 class UpsertCategoryWidget extends HookConsumerWidget {
   const UpsertCategoryWidget({super.key, this.stepData});
-  final CategoryDto? stepData;
+  final Category? stepData;
   @override
   Widget build(context, ref) {
-    final category = useValueNotifier(stepData ?? CategoryDto.empty());
+    final category = useValueNotifier(stepData ?? Category.empty());
     return Scaffold(
       appBar: AppBar(
         leading: CloseButton(onPressed: () => context.pop()),

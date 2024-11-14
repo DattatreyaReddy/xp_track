@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'category_dto.dart';
+part of 'category.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,38 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-CategoryDto _$CategoryDtoFromJson(Map<String, dynamic> json) {
-  return _CategoryDto.fromJson(json);
+Category _$CategoryFromJson(Map<String, dynamic> json) {
+  return _Category.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CategoryDto {
-  int? get categoryId => throw _privateConstructorUsedError;
-  bool? get isDeleted => throw _privateConstructorUsedError;
-  DateTime? get dateCreated => throw _privateConstructorUsedError;
-  DateTime? get lastModified => throw _privateConstructorUsedError;
+mixin _$Category {
+  String get id => throw _privateConstructorUsedError;
+  @EpochDateTimeConverter()
+  DateTime get dateCreated => throw _privateConstructorUsedError;
+  @EpochDateTimeConverter()
+  DateTime get lastModified => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get icon => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   bool get includeInBalance => throw _privateConstructorUsedError;
 
+  /// Serializes this Category to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $CategoryDtoCopyWith<CategoryDto> get copyWith =>
+
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CategoryCopyWith<Category> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CategoryDtoCopyWith<$Res> {
-  factory $CategoryDtoCopyWith(
-          CategoryDto value, $Res Function(CategoryDto) then) =
-      _$CategoryDtoCopyWithImpl<$Res, CategoryDto>;
+abstract class $CategoryCopyWith<$Res> {
+  factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
+      _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
   $Res call(
-      {int? categoryId,
-      bool? isDeleted,
-      DateTime? dateCreated,
-      DateTime? lastModified,
+      {String id,
+      @EpochDateTimeConverter() DateTime dateCreated,
+      @EpochDateTimeConverter() DateTime lastModified,
       String name,
       int icon,
       int color,
@@ -53,44 +56,41 @@ abstract class $CategoryDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CategoryDtoCopyWithImpl<$Res, $Val extends CategoryDto>
-    implements $CategoryDtoCopyWith<$Res> {
-  _$CategoryDtoCopyWithImpl(this._value, this._then);
+class _$CategoryCopyWithImpl<$Res, $Val extends Category>
+    implements $CategoryCopyWith<$Res> {
+  _$CategoryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categoryId = freezed,
-    Object? isDeleted = freezed,
-    Object? dateCreated = freezed,
-    Object? lastModified = freezed,
+    Object? id = null,
+    Object? dateCreated = null,
+    Object? lastModified = null,
     Object? name = null,
     Object? icon = null,
     Object? color = null,
     Object? includeInBalance = null,
   }) {
     return _then(_value.copyWith(
-      categoryId: freezed == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      dateCreated: freezed == dateCreated
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateCreated: null == dateCreated
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastModified: freezed == lastModified
+              as DateTime,
+      lastModified: null == lastModified
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -112,18 +112,17 @@ class _$CategoryDtoCopyWithImpl<$Res, $Val extends CategoryDto>
 }
 
 /// @nodoc
-abstract class _$$CategoryDtoImplCopyWith<$Res>
-    implements $CategoryDtoCopyWith<$Res> {
-  factory _$$CategoryDtoImplCopyWith(
-          _$CategoryDtoImpl value, $Res Function(_$CategoryDtoImpl) then) =
-      __$$CategoryDtoImplCopyWithImpl<$Res>;
+abstract class _$$CategoryImplCopyWith<$Res>
+    implements $CategoryCopyWith<$Res> {
+  factory _$$CategoryImplCopyWith(
+          _$CategoryImpl value, $Res Function(_$CategoryImpl) then) =
+      __$$CategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {int? categoryId,
-      bool? isDeleted,
-      DateTime? dateCreated,
-      DateTime? lastModified,
+      {String id,
+      @EpochDateTimeConverter() DateTime dateCreated,
+      @EpochDateTimeConverter() DateTime lastModified,
       String name,
       int icon,
       int color,
@@ -131,42 +130,39 @@ abstract class _$$CategoryDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CategoryDtoImplCopyWithImpl<$Res>
-    extends _$CategoryDtoCopyWithImpl<$Res, _$CategoryDtoImpl>
-    implements _$$CategoryDtoImplCopyWith<$Res> {
-  __$$CategoryDtoImplCopyWithImpl(
-      _$CategoryDtoImpl _value, $Res Function(_$CategoryDtoImpl) _then)
+class __$$CategoryImplCopyWithImpl<$Res>
+    extends _$CategoryCopyWithImpl<$Res, _$CategoryImpl>
+    implements _$$CategoryImplCopyWith<$Res> {
+  __$$CategoryImplCopyWithImpl(
+      _$CategoryImpl _value, $Res Function(_$CategoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categoryId = freezed,
-    Object? isDeleted = freezed,
-    Object? dateCreated = freezed,
-    Object? lastModified = freezed,
+    Object? id = null,
+    Object? dateCreated = null,
+    Object? lastModified = null,
     Object? name = null,
     Object? icon = null,
     Object? color = null,
     Object? includeInBalance = null,
   }) {
-    return _then(_$CategoryDtoImpl(
-      categoryId: freezed == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      dateCreated: freezed == dateCreated
+    return _then(_$CategoryImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateCreated: null == dateCreated
           ? _value.dateCreated
           : dateCreated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastModified: freezed == lastModified
+              as DateTime,
+      lastModified: null == lastModified
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -189,29 +185,29 @@ class __$$CategoryDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CategoryDtoImpl extends _CategoryDto {
-  _$CategoryDtoImpl(
-      {this.categoryId,
-      this.isDeleted,
-      this.dateCreated,
-      this.lastModified,
+class _$CategoryImpl extends _Category {
+  _$CategoryImpl(
+      {this.id = kDbKeyHolder,
+      @EpochDateTimeConverter() required this.dateCreated,
+      @EpochDateTimeConverter() required this.lastModified,
       required this.name,
       required this.icon,
       required this.color,
       required this.includeInBalance})
       : super._();
 
-  factory _$CategoryDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CategoryDtoImplFromJson(json);
+  factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CategoryImplFromJson(json);
 
   @override
-  final int? categoryId;
+  @JsonKey()
+  final String id;
   @override
-  final bool? isDeleted;
+  @EpochDateTimeConverter()
+  final DateTime dateCreated;
   @override
-  final DateTime? dateCreated;
-  @override
-  final DateTime? lastModified;
+  @EpochDateTimeConverter()
+  final DateTime lastModified;
   @override
   final String name;
   @override
@@ -223,18 +219,15 @@ class _$CategoryDtoImpl extends _CategoryDto {
 
   @override
   String toString() {
-    return 'CategoryDto(categoryId: $categoryId, isDeleted: $isDeleted, dateCreated: $dateCreated, lastModified: $lastModified, name: $name, icon: $icon, color: $color, includeInBalance: $includeInBalance)';
+    return 'Category(id: $id, dateCreated: $dateCreated, lastModified: $lastModified, name: $name, icon: $icon, color: $color, includeInBalance: $includeInBalance)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryDtoImpl &&
-            (identical(other.categoryId, categoryId) ||
-                other.categoryId == categoryId) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
+            other is _$CategoryImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.dateCreated, dateCreated) ||
                 other.dateCreated == dateCreated) &&
             (identical(other.lastModified, lastModified) ||
@@ -246,48 +239,49 @@ class _$CategoryDtoImpl extends _CategoryDto {
                 other.includeInBalance == includeInBalance));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, categoryId, isDeleted,
-      dateCreated, lastModified, name, icon, color, includeInBalance);
+  int get hashCode => Object.hash(runtimeType, id, dateCreated, lastModified,
+      name, icon, color, includeInBalance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryDtoImplCopyWith<_$CategoryDtoImpl> get copyWith =>
-      __$$CategoryDtoImplCopyWithImpl<_$CategoryDtoImpl>(this, _$identity);
+  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
+      __$$CategoryImplCopyWithImpl<_$CategoryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CategoryDtoImplToJson(
+    return _$$CategoryImplToJson(
       this,
     );
   }
 }
 
-abstract class _CategoryDto extends CategoryDto {
-  factory _CategoryDto(
-      {final int? categoryId,
-      final bool? isDeleted,
-      final DateTime? dateCreated,
-      final DateTime? lastModified,
+abstract class _Category extends Category {
+  factory _Category(
+      {final String id,
+      @EpochDateTimeConverter() required final DateTime dateCreated,
+      @EpochDateTimeConverter() required final DateTime lastModified,
       required final String name,
       required final int icon,
       required final int color,
-      required final bool includeInBalance}) = _$CategoryDtoImpl;
-  _CategoryDto._() : super._();
+      required final bool includeInBalance}) = _$CategoryImpl;
+  _Category._() : super._();
 
-  factory _CategoryDto.fromJson(Map<String, dynamic> json) =
-      _$CategoryDtoImpl.fromJson;
+  factory _Category.fromJson(Map<String, dynamic> json) =
+      _$CategoryImpl.fromJson;
 
   @override
-  int? get categoryId;
+  String get id;
   @override
-  bool? get isDeleted;
+  @EpochDateTimeConverter()
+  DateTime get dateCreated;
   @override
-  DateTime? get dateCreated;
-  @override
-  DateTime? get lastModified;
+  @EpochDateTimeConverter()
+  DateTime get lastModified;
   @override
   String get name;
   @override
@@ -296,8 +290,11 @@ abstract class _CategoryDto extends CategoryDto {
   int get color;
   @override
   bool get includeInBalance;
+
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$CategoryDtoImplCopyWith<_$CategoryDtoImpl> get copyWith =>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

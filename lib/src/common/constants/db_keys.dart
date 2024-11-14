@@ -20,3 +20,7 @@ enum DBKey {
 
   String get name => _name;
 }
+
+const String kDbKeyHolder = "holder";
+
+final DateTime kDbTimeHolder = DateTime.fromMillisecondsSinceEpoch(0);

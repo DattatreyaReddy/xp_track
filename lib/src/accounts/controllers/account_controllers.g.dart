@@ -6,11 +6,11 @@ part of 'account_controllers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$accountsHash() => r'9e5a3097983c905345b291ca9f7265d52025a7b5';
+String _$accountsHash() => r'375b32c0290bce4cbd96805a05477dd1525d0b88';
 
 /// See also [accounts].
 @ProviderFor(accounts)
-final accountsProvider = AutoDisposeStreamProvider<List<AccountDto>>.internal(
+final accountsProvider = AutoDisposeStreamProvider<List<Account>>.internal(
   accounts,
   name: r'accountsProvider',
   debugGetCreateSourceHash:
@@ -19,8 +19,10 @@ final accountsProvider = AutoDisposeStreamProvider<List<AccountDto>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AccountsRef = AutoDisposeStreamProviderRef<List<AccountDto>>;
-String _$accountSelectedHash() => r'6189560542e692b9dc9dd477dde9307294e93878';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef AccountsRef = AutoDisposeStreamProviderRef<List<Account>>;
+String _$accountSelectedHash() => r'cb65f316033a5cd90e3f6c8ab8aab91f021aced5';
 
 /// See also [accountSelected].
 @ProviderFor(accountSelected)
@@ -34,13 +36,14 @@ final accountSelectedProvider = AutoDisposeProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AccountSelectedRef = AutoDisposeProviderRef<bool>;
-String _$categoriesHash() => r'13b39808efdcc52d4c136761d78f1729ce8051ea';
+String _$categoriesHash() => r'70d89b9aa0517fcce404cc0d129b515f9307e51c';
 
 /// See also [categories].
 @ProviderFor(categories)
-final categoriesProvider =
-    AutoDisposeStreamProvider<List<CategoryDto>>.internal(
+final categoriesProvider = AutoDisposeStreamProvider<List<Category>>.internal(
   categories,
   name: r'categoriesProvider',
   debugGetCreateSourceHash:
@@ -49,8 +52,10 @@ final categoriesProvider =
   allTransitiveDependencies: null,
 );
 
-typedef CategoriesRef = AutoDisposeStreamProviderRef<List<CategoryDto>>;
-String _$categorySelectedHash() => r'0ee5d9913077a2ced04d099c18dd2da804a36031';
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CategoriesRef = AutoDisposeStreamProviderRef<List<Category>>;
+String _$categorySelectedHash() => r'6ca127ab8acbbe9065b219558d8b1212e247ad93';
 
 /// See also [categorySelected].
 @ProviderFor(categorySelected)
@@ -64,6 +69,8 @@ final categorySelectedProvider = AutoDisposeProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef CategorySelectedRef = AutoDisposeProviderRef<bool>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

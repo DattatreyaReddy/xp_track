@@ -75,7 +75,9 @@ mixin _$PageFilter<Key extends FilterEnum> {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageFilterCopyWith<Key, PageFilter<Key>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -102,6 +104,8 @@ class _$PageFilterCopyWithImpl<Key extends FilterEnum, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,6 +152,8 @@ class __$$PageFilterRadioImplCopyWithImpl<Key extends FilterEnum, $Res>
       $Res Function(_$PageFilterRadioImpl<Key>) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -227,7 +233,9 @@ class _$PageFilterRadioImpl<Key extends FilterEnum>
       const DeepCollectionEquality().hash(_options),
       const DeepCollectionEquality().hash(_dependentKeys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageFilterRadioImplCopyWith<Key, _$PageFilterRadioImpl<Key>>
@@ -327,8 +335,11 @@ abstract class PageFilterRadio<Key extends FilterEnum>
   List<PageFilterOption<Key, dynamic>> get options;
   @override
   List<Key>? get dependentKeys;
+
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageFilterRadioImplCopyWith<Key, _$PageFilterRadioImpl<Key>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -355,6 +366,8 @@ class __$$PageFilterCheckboxImplCopyWithImpl<Key extends FilterEnum, $Res>
       $Res Function(_$PageFilterCheckboxImpl<Key>) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -433,7 +446,9 @@ class _$PageFilterCheckboxImpl<Key extends FilterEnum>
       const DeepCollectionEquality().hash(_options),
       const DeepCollectionEquality().hash(_dependentKeys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageFilterCheckboxImplCopyWith<Key, _$PageFilterCheckboxImpl<Key>>
@@ -532,8 +547,11 @@ abstract class PageFilterCheckbox<Key extends FilterEnum>
   List<PageFilterOption<Key, dynamic>> get options;
   @override
   List<Key>? get dependentKeys;
+
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageFilterCheckboxImplCopyWith<Key, _$PageFilterCheckboxImpl<Key>>
       get copyWith => throw _privateConstructorUsedError;
 }

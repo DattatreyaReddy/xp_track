@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/utils/extensions/custom_extensions.dart';
 import '../../../../common/widgets/number_picker/number_picker_with_label.dart';
-import '../../../dto/split_details_dto.dart';
+import '../../../domain/account.dart';
 
 class UpsertSplitDetails extends StatelessWidget {
   const UpsertSplitDetails({
@@ -11,8 +11,8 @@ class UpsertSplitDetails extends StatelessWidget {
     required this.onChanged,
   });
 
-  final SplitDetailsDto splitDetailsDto;
-  final ValueChanged<SplitDetailsDto> onChanged;
+  final SplitDetails splitDetailsDto;
+  final ValueChanged<SplitDetails> onChanged;
 
   @override
   Widget build(BuildContext context) {

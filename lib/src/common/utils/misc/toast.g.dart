@@ -6,7 +6,7 @@ part of 'toast.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$toastHash() => r'6bc9df511e9180eea4d509e57fdd4eed4c062779';
+String _$toastHash() => r'afa12e7c25e38923e8c1af465d21715175805653';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -141,6 +141,8 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin ToastRef on AutoDisposeProviderRef<Toast> {
   /// The parameter `context` of this provider.
   BuildContext get context;
@@ -154,4 +156,4 @@ class _ToastProviderElement extends AutoDisposeProviderElement<Toast>
   BuildContext get context => (origin as ToastProvider).context;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

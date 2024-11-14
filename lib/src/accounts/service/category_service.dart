@@ -1,6 +1,7 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../dto/category_dto.dart';
+import '../domain/category.dart';
 import '../repository/category_repository.dart';
 
 part 'category_service.g.dart';
@@ -11,19 +12,16 @@ class CategoryService {
   CategoryService(this._repository);
 
   // Delete Category
-  Future<bool> deleteCategory(int? categoryId) =>
+  Future<bool> deleteCategory(String categoryId) =>
       _repository.deleteById(categoryId);
 
   // Save Category
-  Future<void> saveCategory(CategoryDto category) =>
-      _repository.save(category.toDomain);
+  Future<void> saveCategory(Category category) => _repository.save(category);
 
   // Get Categories Stream
-  Stream<List<CategoryDto>> getCategoriesStream() => _repository
-      .watchAll()
-      .map((event) => event.map((e) => CategoryDto.fromDomain(e)).toList());
+  Stream<List<Category>> getCategoriesStream() => _repository.getAll();
 }
 
 @riverpod
-CategoryService categoryService(CategoryServiceRef ref) =>
+CategoryService categoryService(Ref ref) =>
     CategoryService(ref.watch(categoryRepositoryProvider));

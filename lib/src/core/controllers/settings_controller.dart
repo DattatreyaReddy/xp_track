@@ -1,3 +1,4 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../common/constants/currency_symbols.dart';
@@ -28,7 +29,7 @@ class DefaultCurrency extends _$DefaultCurrency
 }
 
 @riverpod
-CurrencyInfoDto? defaultCurrencySymbol(DefaultCurrencySymbolRef ref) =>
+CurrencyInfoDto? defaultCurrencySymbol(Ref ref) =>
     supportedCurrencyMap[ref.watch(defaultCurrencyProvider)];
 
 @riverpod

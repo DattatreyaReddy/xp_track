@@ -21,7 +21,9 @@ mixin _$PageFilterOption<T extends FilterEnum, U> {
   bool Function(Map<FilterEnum, dynamic>)? get showOption =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageFilterOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageFilterOptionCopyWith<T, U, PageFilterOption<T, U>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +51,8 @@ class _$PageFilterOptionCopyWithImpl<T extends FilterEnum, U, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageFilterOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,6 +100,8 @@ class __$$PageFilterOptionImplCopyWithImpl<T extends FilterEnum, U, $Res>
       $Res Function(_$PageFilterOptionImpl<T, U>) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageFilterOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,7 +160,9 @@ class _$PageFilterOptionImpl<T extends FilterEnum, U>
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(value), label, showOption);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageFilterOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageFilterOptionImplCopyWith<T, U, _$PageFilterOptionImpl<T, U>>
@@ -176,8 +184,11 @@ abstract class _PageFilterOption<T extends FilterEnum, U>
   String get label;
   @override
   bool Function(Map<FilterEnum, dynamic>)? get showOption;
+
+  /// Create a copy of PageFilterOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageFilterOptionImplCopyWith<T, U, _$PageFilterOptionImpl<T, U>>
       get copyWith => throw _privateConstructorUsedError;
 }

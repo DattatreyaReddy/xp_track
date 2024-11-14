@@ -1,47 +1,38 @@
-import 'package:isar/isar.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../common/utils/extensions/custom_extensions.dart';
-import '../../core/storage/isar/domain/generic_id_abstract_entity.dart';
+import '../../common/abstracts/generic_entity.dart';
+import '../../common/constants/db_keys.dart';
+import '../../common/utils/misc/epoch_date_time_converter.dart';
+import '../dto/icon_and_color_converters.dart';
 
+part 'category.freezed.dart';
 part 'category.g.dart';
 
-@Collection(accessor: "categories")
-class Category extends GenericIdAbstractEntity {
-  String name;
-
-  int icon;
-
-  int color;
-  @Index()
-  bool includeInBalance;
-
-  Category({
-    required this.name,
-    required this.icon,
-    required this.color,
-    required this.includeInBalance,
-  }) : super();
-
-  factory Category.fromDto({
-    int? id,
-    bool? isDeleted = false,
-    DateTime? dateCreated,
-    DateTime? lastModified,
+@freezed
+class Category
+    with _$Category, IconAndColorConverters
+    implements GenericEntity {
+  Category._();
+  factory Category({
+    @Default(kDbKeyHolder) String id,
+    @EpochDateTimeConverter() required DateTime dateCreated,
+    @EpochDateTimeConverter() required DateTime lastModified,
     required String name,
     required int icon,
     required int color,
     required bool includeInBalance,
-  }) {
-    final Category category = Category(
-      name: name,
-      icon: icon,
-      color: color,
-      includeInBalance: includeInBalance,
-    );
-    category.id = id ?? Isar.autoIncrement;
-    category.isDeleted = isDeleted.ifNull();
-    category.dateCreated = dateCreated;
-    category.lastModified = lastModified;
-    return category;
-  }
+  }) = _Category;
+
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
+
+  factory Category.empty() => Category(
+        dateCreated: kDbTimeHolder,
+        lastModified: kDbTimeHolder,
+        name: '',
+        icon: Icons.shopping_cart.codePoint,
+        color: Colors.blueAccent.value,
+        includeInBalance: true,
+      );
 }

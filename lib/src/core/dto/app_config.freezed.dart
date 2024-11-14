@@ -77,6 +77,9 @@ class _$AppConfigCopyWithImpl<$Res, $Val extends AppConfig>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AppConfig
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -93,6 +96,9 @@ class __$$SplashStateImplCopyWithImpl<$Res>
   __$$SplashStateImplCopyWithImpl(
       _$SplashStateImpl _value, $Res Function(_$SplashStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppConfig
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -201,6 +207,9 @@ class __$$SetupStateImplCopyWithImpl<$Res>
   __$$SetupStateImplCopyWithImpl(
       _$SetupStateImpl _value, $Res Function(_$SetupStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppConfig
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -309,6 +318,9 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   __$$HomeStateImplCopyWithImpl(
       _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AppConfig
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

@@ -1,93 +1,99 @@
-import 'package:isar/isar.dart';
+import 'package:tekartik_app_flutter_sembast/setup/sembast_flutter.dart';
 
-import '../domain/generic_id_abstract_entity.dart';
-import '../domain/page_request.dart';
-import '../dto/page_result.dart';
-import '../utils/generic_extensions.dart';
-import '../utils/isar_extensions.dart';
+import '../../../../common/abstracts/generic_entity.dart';
+import '../../../../common/utils/extensions/custom_extensions.dart';
+import '../../../../common/utils/misc/app_utils.dart';
+import '../../../../common/utils/misc/custom_types.dart';
 
-abstract class GenericRepository<T extends GenericIdAbstractEntity> {
-  final IsarCollection<T> _isarCollection;
-  final Isar isar;
+abstract class GenericRepository<T extends GenericEntity> {
+  final Database database;
+  final StoreRef<String, JsonObject> store;
+  final GenericFromJson<T> fromJson;
 
-  GenericRepository(this.isar) : _isarCollection = isar.collection<T>();
+  GenericRepository(this.database, String _storeName, this.fromJson)
+      : store = StoreRef(_storeName);
 
-  Future<int> getCount({bool includeDeleted = false}) async {
-    if (includeDeleted) {
-      return await _isarCollection.count();
+  Stream<List<T>> getAll() =>
+      store.query().onSnapshots(database).map(AppUtils.convertSnaps(fromJson));
+
+  Future<int> getCount([DatabaseClient? dbClient]) =>
+      wrap(dbClient, (txn) => store.count(txn));
+
+  Future<T?> getById(String id, [DatabaseClient? dbClient]) async {
+    if (id.isDbKeyHolder) {
+      return null;
     }
-    return await _isarCollection.filter().isDeletedEqualTo(false).count();
+    return wrap(
+      dbClient,
+      (txn) => store.record(id).get(txn).then(AppUtils.convertGet(fromJson)),
+    );
   }
 
-  Future<List<T>> getAll() async =>
-      await _isarCollection.filter().isDeletedEqualTo(false).findAll();
-
-  Stream<List<T>> watchAll() => _isarCollection
-      .filter()
-      .isDeletedEqualTo(false)
-      .watch(fireImmediately: true);
-
-  Future<T> save(T entity) async {
-    entity.lastModified = DateTime.now();
-    if (entity.id == Isar.autoIncrement) {
-      entity.dateCreated = DateTime.now();
-    }
-    final resultId = await isar.writeTxn(() => _isarCollection.put(entity));
-    return (await _isarCollection.get(resultId))!;
-  }
-
-  Future<bool> delete(T entity) async => deleteById(entity.id);
-
-  Future<bool> deleteById(int? id) async {
-    if (id == null || id == Isar.autoIncrement) {
-      return false;
-    }
-    final entity = await _isarCollection.get(id);
-    if (entity == null) {
-      return false;
-    }
-    entity.isDeleted = true;
-    entity.lastModified = DateTime.now();
-    await isar.writeTxn(() => _isarCollection.put(entity));
-    return true;
-  }
-
-  Future<List<T>> saveAll(List<T> entities) async {
-    if (entities.isEmpty) {
-      return [];
+  Future<void> save(T entity, [DatabaseClient? dbClient]) async {
+    final int now = DateTime.now().millisecondsSinceEpoch;
+    final entityObj = entity.toJson();
+    entityObj[GenericEntityFields.lastModified.name] = now;
+    if (entity.id.isDbKeyHolder) {
+      entityObj[GenericEntityFields.dateCreated.name] = now;
     }
 
-    final currentTime = DateTime.now();
-    for (var entity in entities) {
-      entity.lastModified = currentTime;
-      if (entity.id == Isar.autoIncrement) {
-        entity.dateCreated = currentTime;
+    return wrap(dbClient, (txn) async {
+      String entityId = entity.id;
+      if (entityId.isDbKeyHolder) {
+        entityId = await store.generateKey(txn);
       }
-    }
-    final resultIds =
-        await isar.writeTxn(() => _isarCollection.putAll(entities));
-    return (await _isarCollection.getAll(resultIds)).map((e) => e!).toList();
+      entityObj[GenericEntityFields.id.name] = entityId;
+      await store.record(entityId).put(txn, entityObj);
+    });
   }
 
-  Future<bool> deleteAll(List<T> entities) async {
-    if (entities.isEmpty) {
-      return false;
-    }
-
-    final currentTime = DateTime.now();
-    for (var entity in entities) {
-      if (entity.id == Isar.autoIncrement) {
-        return false;
-      }
-      entity.isDeleted = true;
-      entity.lastModified = currentTime;
-    }
-
-    await isar.writeTxn(() => _isarCollection.putAll(entities));
-    return true;
+  Future<void> saveAll(List<T> entities, [DatabaseClient? dbClient]) async {
+    if (entities.isEmpty) return;
+    return wrap(
+      dbClient,
+      (txn) => Future.wait([for (final entry in entities) save(entry, txn)]),
+    );
   }
 
-  Future<PageResult<T>> page(PageRequest pageRequest) async {
-    return _isarCollection.where().page(pageRequest);
+  Future<bool> delete(T entity, [DatabaseClient? dbClient]) =>
+      deleteById(entity.id, dbClient);
+
+  Future<bool> deleteById(String id, [DatabaseClient? dbClient]) async {
+    if (id.isDbKeyHolder) {
+      return true;
+    }
+    return await wrap(
+      dbClient,
+      (txn) async => (await store.record(id).delete(txn)).isNotBlank,
+    );
+  }
+
+  Future<void> deleteAllById(List<String> entities,
+      [DatabaseClient? dbClient]) async {
+    if (entities.isEmpty) return;
+    return wrap(
+      dbClient,
+      (txn) =>
+          Future.wait([for (final entry in entities) deleteById(entry, txn)]),
+    );
+  }
+
+  Future<void> deleteAll(List<T> entities, [DatabaseClient? dbClient]) async {
+    if (entities.isEmpty) return;
+    return wrap(
+      dbClient,
+      (txn) => Future.wait(
+          [for (final entry in entities) deleteById(entry.id, txn)]),
+    );
+  }
+
+  Future<U> wrap<U>(
+    DatabaseClient? dbClient,
+    Future<U> Function(DatabaseClient) call,
+  ) async {
+    if (dbClient == null) {
+      return await database.transaction((txn) => call(txn));
+    }
+    return await call(dbClient);
   }
 }

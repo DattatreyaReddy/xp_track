@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../common/utils/misc/app_utils.dart';
 import '../../common/widgets/xp_list_tile.dart';
-import '../dto/category_dto.dart';
+import '../domain/category.dart';
 import '../service/category_service.dart';
 
 class CategoryListTile extends ConsumerWidget {
@@ -15,14 +15,14 @@ class CategoryListTile extends ConsumerWidget {
     this.onTap,
     this.isReadOnly = false,
   });
-  final CategoryDto category;
+  final Category category;
   final VoidCallback? onTap;
   final bool isReadOnly;
 
   @override
   Widget build(context, ref) {
     return XpListTile(
-      swapKey: category.categoryId,
+      swapKey: category.id,
       tileColor: category.primaryColor,
       hideIconOnNull: true,
       isReadOnly: isReadOnly,
@@ -77,7 +77,7 @@ class CategoryListTile extends ConsumerWidget {
             if (shouldRevoke.ifNull()) {
               await ref
                   .read(categoryServiceProvider)
-                  .deleteCategory(category.categoryId);
+                  .deleteCategory(category.id);
             }
           },
         ),

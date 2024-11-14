@@ -6,7 +6,7 @@ part of 'category_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoryServiceHash() => r'41dcb4cc3d9f020a9a870e2c7d16eea59c7de400';
+String _$categoryServiceHash() => r'e4a64be4c67ec01ce29e3a9892ac5d747a32f63e';
 
 /// See also [categoryService].
 @ProviderFor(categoryService)
@@ -20,6 +20,8 @@ final categoryServiceProvider = AutoDisposeProvider<CategoryService>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef CategoryServiceRef = AutoDisposeProviderRef<CategoryService>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

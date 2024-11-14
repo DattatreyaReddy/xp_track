@@ -1,54 +1,40 @@
-import 'package:isar/isar.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../common/utils/extensions/custom_extensions.dart';
-import '../../core/storage/isar/domain/generic_id_abstract_entity.dart';
-import '../dto/credit_details_dto.dart';
-import '../dto/split_details_dto.dart';
+import '../../common/abstracts/generic_entity.dart';
+import '../../common/constants/currency_symbols.dart';
+import '../../common/constants/db_keys.dart';
+import '../../common/dto/currency_info/currency_info_dto.dart';
+import '../../common/utils/misc/epoch_date_time_converter.dart';
+import '../dto/icon_and_color_converters.dart';
 import '../enums/account_type.dart';
 
+part 'account.freezed.dart';
 part 'account.g.dart';
 
-@collection
-class Account extends GenericIdAbstractEntity {
-  String name;
+enum AccountField {
+  name,
+  icon,
+  color,
+  currencyCode,
+  orderNumber,
+  includeInBalance,
+  accountType,
+  creditDetails,
+  splitDetails,
+}
 
-  int icon;
-
-  int color;
-
-  String currencyCode;
-
-  @Index()
-  int orderNumber;
-
-  bool includeInBalance;
-
-  @Enumerated(EnumType.value, "value")
-  AccountType accountType;
-
-  CreditDetails? creditDetails;
-
-  SplitDetails? splitDetails;
-
-  Account({
-    required this.name,
-    required this.icon,
-    required this.color,
-    required this.currencyCode,
-    required this.orderNumber,
-    required this.includeInBalance,
-    required this.accountType,
-    this.creditDetails,
-    this.splitDetails,
-  })  : assert(accountType != AccountType.credit || creditDetails != null),
-        assert(accountType != AccountType.split || splitDetails != null),
-        super();
-
-  factory Account.fromDto({
-    int? id,
-    bool? isDeleted = false,
-    DateTime? dateCreated,
-    DateTime? lastModified,
+@freezed
+class Account with _$Account, IconAndColorConverters implements GenericEntity {
+  factory Account.fromJson(Map<String, dynamic> json) =>
+      _$AccountFromJson(json);
+  Account._();
+  @Assert("accountType != AccountType.credit || creditDetails != null")
+  @Assert("accountType != AccountType.split || splitDetails != null")
+  factory Account({
+    @Default(kDbKeyHolder) String id,
+    @EpochDateTimeConverter() required DateTime dateCreated,
+    @EpochDateTimeConverter() required DateTime lastModified,
     required String name,
     required int icon,
     required int color,
@@ -56,50 +42,57 @@ class Account extends GenericIdAbstractEntity {
     required int orderNumber,
     required bool includeInBalance,
     required AccountType accountType,
-    CreditDetailsDto? creditDetails,
-    SplitDetailsDto? splitDetails,
-  }) {
-    final Account account = Account(
-      name: name,
-      icon: icon,
-      color: color,
-      currencyCode: currencyCode,
-      orderNumber: orderNumber,
-      includeInBalance: includeInBalance,
-      accountType: accountType,
-      creditDetails: creditDetails?.toDomain,
-      splitDetails: splitDetails?.toDomain,
-    );
-    account.id = id ?? Isar.autoIncrement;
-    account.isDeleted = isDeleted.ifNull();
-    account.dateCreated = dateCreated;
-    account.lastModified = lastModified;
-    return account;
-  }
+    CreditDetails? creditDetails,
+    SplitDetails? splitDetails,
+  }) = _Account;
+
+  CurrencyInfoDto get currencyInfo => supportedCurrencyMap[currencyCode]!;
+
+  factory Account.empty(
+    String currencyCode,
+  ) =>
+      Account(
+        id: kDbKeyHolder,
+        dateCreated: kDbTimeHolder,
+        lastModified: kDbTimeHolder,
+        name: '',
+        icon: Icons.account_balance_wallet_rounded.codePoint,
+        color: Colors.blueAccent.value,
+        currencyCode: currencyCode,
+        orderNumber: 0,
+        includeInBalance: true,
+        accountType: AccountType.debit,
+        creditDetails: null,
+        splitDetails: null,
+      );
 }
 
-@embedded
-class CreditDetails {
-  double? limit;
+@freezed
+class CreditDetails with _$CreditDetails {
+  factory CreditDetails({
+    required double limit,
+    required int billingDate,
+    required int gracePeriodInDays,
+  }) = _CreditDetails;
 
-  int? billingDate;
+  factory CreditDetails.fromJson(Map<String, dynamic> json) =>
+      _$CreditDetailsFromJson(json);
 
-  int? gracePeriodInDays;
-
-  CreditDetails({
-    this.limit,
-    this.billingDate,
-    this.gracePeriodInDays,
-  })  : assert(limit != null && limit > 0),
-        assert(billingDate != null && billingDate > 0 && billingDate < 32),
-        assert(gracePeriodInDays != null && gracePeriodInDays > 0);
+  factory CreditDetails.empty() => CreditDetails(
+        limit: 1000,
+        billingDate: 15,
+        gracePeriodInDays: 21,
+      );
 }
 
-@embedded
-class SplitDetails {
-  int? splitInto;
+@freezed
+class SplitDetails with _$SplitDetails {
+  @Assert("splitInto != null && splitInto > 0")
+  factory SplitDetails({
+    required int splitInto,
+  }) = _SplitDetails;
 
-  SplitDetails({
-    this.splitInto,
-  }) : assert(splitInto != null && splitInto > 0);
+  factory SplitDetails.empty() => SplitDetails(splitInto: 2);
+  factory SplitDetails.fromJson(Map<String, dynamic> json) =>
+      _$SplitDetailsFromJson(json);
 }

@@ -26,8 +26,12 @@ mixin _$PageRequest {
   /// the size of the page to be returned, must be greater than 0.
   int get size => throw _privateConstructorUsedError;
 
+  /// Serializes this PageRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageRequestCopyWith<PageRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$PageRequestCopyWithImpl<$Res, $Val extends PageRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class __$$PageRequestImplCopyWithImpl<$Res>
       _$PageRequestImpl _value, $Res Function(_$PageRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,11 +148,13 @@ class _$PageRequestImpl implements _PageRequest {
             (identical(other.size, size) || other.size == size));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, page, size);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageRequestImplCopyWith<_$PageRequestImpl> get copyWith =>
@@ -165,16 +175,18 @@ abstract class _PageRequest implements PageRequest {
   factory _PageRequest.fromJson(Map<String, dynamic> json) =
       _$PageRequestImpl.fromJson;
 
-  @override
-
   /// zero-based page index, must not be negative
-  int get page;
   @override
+  int get page;
 
   /// the size of the page to be returned, must be greater than 0.
-  int get size;
   @override
-  @JsonKey(ignore: true)
+  int get size;
+
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageRequestImplCopyWith<_$PageRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

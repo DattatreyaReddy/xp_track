@@ -5,10 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../accounts/controllers/account_controllers.dart';
-import '../../accounts/dto/account_dto.dart';
+import '../../accounts/domain/account.dart';
 import '../../accounts/widgets/account_list_tile.dart';
 import '../../accounts/widgets/upsert_account/upsert_account_widget.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
+import '../../common/widgets/emoticons.dart';
 import '../../common/widgets/label_text.dart';
 import '../routes/routes.dart';
 import '../widgets/intro_nav_buttons.dart';
@@ -17,7 +18,7 @@ import '../widgets/responsive_intro_widget.dart';
 class SetupAccountScreen extends HookConsumerWidget {
   const SetupAccountScreen({super.key});
 
-  void showUpsertAccountDialog(BuildContext context, [AccountDto? account]) {
+  void showUpsertAccountDialog(BuildContext context, [Account? account]) {
     if (context.isSmallTablet) {
       Scaffold.of(context).openEndDrawer();
     } else {
@@ -36,7 +37,7 @@ class SetupAccountScreen extends HookConsumerWidget {
     // using the value notifier to pass the account to the drawer
     // when the user taps on an account to edit it
     // A workaround to pass the selected account to the drawer
-    final editAccount = useValueNotifier<AccountDto?>(null);
+    final editAccount = useValueNotifier<Account?>(null);
 
     return ResponsiveIntroWidget(
       endDrawer: ConstrainedBox(
@@ -57,22 +58,24 @@ class SetupAccountScreen extends HookConsumerWidget {
             child: Material(
               child: asyncAccountList.showUiWhenData(
                 context,
-                (data) => ListView.separated(
-                  separatorBuilder: (context, index) => const Gap(4),
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    final account = data[index];
-                    return AccountListTile(
-                      previousAccount: data.getPrev(index),
-                      nextAccount: data.getNext(index),
-                      onTap: () {
-                        editAccount.value = account;
-                        showUpsertAccountDialog(context, account);
-                      },
-                      account: account,
-                    );
-                  },
-                ),
+                (data) => data.isBlank
+                    ? Center(child: Emoticons())
+                    : ListView.separated(
+                        separatorBuilder: (context, index) => const Gap(4),
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          final account = data[index];
+                          return AccountListTile(
+                            previousAccount: data.getPrev(index),
+                            nextAccount: data.getNext(index),
+                            onTap: () {
+                              editAccount.value = account;
+                              showUpsertAccountDialog(context, account);
+                            },
+                            account: account,
+                          );
+                        },
+                      ),
               ),
             ),
           ),

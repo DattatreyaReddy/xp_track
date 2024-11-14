@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common/utils/extensions/custom_extensions.dart';
 import '../../common/utils/misc/app_utils.dart';
 import '../../common/widgets/xp_list_tile.dart';
-import '../dto/account_dto.dart';
+import '../domain/account.dart';
 import '../service/account_service.dart';
 
 class AccountListTile extends ConsumerWidget {
@@ -17,16 +17,16 @@ class AccountListTile extends ConsumerWidget {
     this.nextAccount,
     this.isReadOnly = false,
   });
-  final AccountDto account;
+  final Account account;
   final VoidCallback? onTap;
-  final AccountDto? previousAccount;
-  final AccountDto? nextAccount;
+  final Account? previousAccount;
+  final Account? nextAccount;
   final bool isReadOnly;
 
   @override
   Widget build(context, ref) {
     return XpListTile(
-      swapKey: account.accountId,
+      swapKey: account.id,
       tileColor: account.primaryColor,
       hideIconOnNull: false,
       isReadOnly: isReadOnly,
@@ -48,17 +48,17 @@ class AccountListTile extends ConsumerWidget {
       ),
       onTap: AppUtils.returnIf(!isReadOnly, onTap),
       onNext: AppUtils.returnIf(
-        nextAccount?.accountId != null && account.accountId != null,
+        nextAccount?.id != null,
         () => ref.read(accountServiceProvider).swapAccountsOrder(
-              account.accountId!,
-              nextAccount!.accountId!,
+              account.id,
+              nextAccount!.id,
             ),
       ),
       onPrev: AppUtils.returnIf(
-        previousAccount?.accountId != null && account.accountId != null,
+        previousAccount?.id != null,
         () => ref.read(accountServiceProvider).swapAccountsOrder(
-              previousAccount!.accountId!,
-              account.accountId!,
+              previousAccount!.id,
+              account.id,
             ),
       ),
       onDelete: AppUtils.returnIf(
@@ -100,9 +100,7 @@ class AccountListTile extends ConsumerWidget {
             ),
           );
           if (shouldRevoke.ifNull()) {
-            await ref
-                .read(accountServiceProvider)
-                .deleteAccount(account.accountId);
+            await ref.read(accountServiceProvider).deleteAccount(account.id);
           }
         },
       ),

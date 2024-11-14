@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../common/utils/extensions/custom_extensions.dart';
@@ -15,7 +16,7 @@ part 'router_controller.g.dart';
 final navigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
-GoRouter routerConfig(RouterConfigRef ref) {
+GoRouter routerConfig(Ref ref) {
   // This instruction keeps this notifier alive
   // We don't really care of its value, and neither we want to rebuild on its changes.
   final sub = ref.listen(routerNotifierProvider, (_, __) {});
