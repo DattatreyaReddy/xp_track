@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'common/l10n/generated/app_localizations.dart' show AppLocalizations;
 import 'common/utils/extensions/custom_extensions.dart';
 import 'core/controllers/router_controller.dart';
 import 'core/controllers/settings_controller.dart';

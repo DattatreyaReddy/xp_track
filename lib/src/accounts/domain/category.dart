@@ -10,19 +10,26 @@ part 'category.freezed.dart';
 part 'category.g.dart';
 
 @freezed
+@JsonSerializable(createToJson: true)
 class Category
     with _$Category, IconAndColorConverters
     implements GenericEntity {
-  Category._();
-  factory Category({
-    @Default(kDbKeyHolder) String id,
-    @EpochDateTimeConverter() required DateTime dateCreated,
-    @EpochDateTimeConverter() required DateTime lastModified,
-    required String name,
-    required int icon,
-    required int color,
-    required bool includeInBalance,
-  }) = _Category;
+  @override
+  final String id;
+  @override
+  @EpochDateTimeConverter()
+  final DateTime dateCreated;
+  @override
+  @EpochDateTimeConverter()
+  final DateTime lastModified;
+  @override
+  final String name;
+  @override
+  final int icon;
+  @override
+  final int color;
+  @override
+  final bool includeInBalance;
 
   factory Category.fromJson(Map<String, dynamic> json) =>
       _$CategoryFromJson(json);
@@ -32,7 +39,20 @@ class Category
         lastModified: kDbTimeHolder,
         name: '',
         icon: Icons.shopping_cart.codePoint,
-        color: Colors.blueAccent.value,
+        color: Colors.blueAccent.toARGB32(),
         includeInBalance: true,
       );
+
+  Category({
+    this.id = kDbKeyHolder,
+    required this.dateCreated,
+    required this.lastModified,
+    required this.name,
+    required this.icon,
+    required this.color,
+    required this.includeInBalance,
+  });
+
+  @override
+  Map<String, Object?> toJson() => _$CategoryToJson(this);
 }

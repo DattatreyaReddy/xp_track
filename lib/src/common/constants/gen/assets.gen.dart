@@ -18,7 +18,7 @@ class $AssetsImagesGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,6 +9,7 @@ import 'package:intl/intl.dart';
 
 import '../../constants/app_constants.dart';
 import '../../constants/db_keys.dart';
+import '../../l10n/generated/app_localizations.dart' show AppLocalizations;
 import '../../widgets/custom_circular_progress_indicator.dart';
 import '../../widgets/error_display_copy.dart';
 import '../misc/app_utils.dart';

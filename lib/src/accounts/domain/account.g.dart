@@ -6,8 +6,7 @@ part of 'account.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
-    _$AccountImpl(
+Account _$AccountFromJson(Map<String, dynamic> json) => Account(
       id: json['id'] as String? ?? kDbKeyHolder,
       dateCreated: const EpochDateTimeConverter()
           .fromJson((json['dateCreated'] as num).toInt()),
@@ -29,8 +28,7 @@ _$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
           : SplitDetails.fromJson(json['splitDetails'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AccountImplToJson(_$AccountImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
       'id': instance.id,
       'dateCreated':
           const EpochDateTimeConverter().toJson(instance.dateCreated),
@@ -53,26 +51,21 @@ const _$AccountTypeEnumMap = {
   AccountType.split: 'SPLIT',
 };
 
-_$CreditDetailsImpl _$$CreditDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$CreditDetailsImpl(
+CreditDetails _$CreditDetailsFromJson(Map<String, dynamic> json) =>
+    CreditDetails(
       limit: (json['limit'] as num).toDouble(),
-      billingDate: (json['billingDate'] as num).toInt(),
-      gracePeriodInDays: (json['gracePeriodInDays'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$CreditDetailsImplToJson(_$CreditDetailsImpl instance) =>
+Map<String, dynamic> _$CreditDetailsToJson(CreditDetails instance) =>
     <String, dynamic>{
       'limit': instance.limit,
-      'billingDate': instance.billingDate,
-      'gracePeriodInDays': instance.gracePeriodInDays,
     };
 
-_$SplitDetailsImpl _$$SplitDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$SplitDetailsImpl(
+SplitDetails _$SplitDetailsFromJson(Map<String, dynamic> json) => SplitDetails(
       splitInto: (json['splitInto'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$SplitDetailsImplToJson(_$SplitDetailsImpl instance) =>
+Map<String, dynamic> _$SplitDetailsToJson(SplitDetails instance) =>
     <String, dynamic>{
       'splitInto': instance.splitInto,
     };

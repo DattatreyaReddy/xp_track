@@ -6,9 +6,16 @@ part 'page_filter_option.freezed.dart';
 
 @freezed
 class PageFilterOption<T extends FilterEnum, U> with _$PageFilterOption {
-  factory PageFilterOption({
-    required U value,
-    required String label,
-    bool Function(Map<FilterEnum, dynamic>)? showOption,
-  }) = _PageFilterOption;
+  @override
+  final U value;
+  @override
+  final String label;
+  @override
+  final bool Function(Map<FilterEnum, dynamic>)? showOption;
+
+  PageFilterOption({
+    required this.value,
+    required this.label,
+    required this.showOption,
+  });
 }

@@ -118,8 +118,12 @@ class UpsertAccountWidget extends HookConsumerWidget {
                   onChanged: (value) {
                     account.value = account.value.copyWith(
                       accountType: value,
-                      creditDetails: null,
-                      splitDetails: null,
+                      creditDetails: value == AccountType.credit
+                          ? CreditDetails.empty()
+                          : null,
+                      splitDetails: value == AccountType.split
+                          ? SplitDetails.empty()
+                          : null,
                     );
                   },
                 );

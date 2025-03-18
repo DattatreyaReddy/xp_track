@@ -6,7 +6,8 @@ final List<int> contrastColorKeys = contrastColorPairs.keys.toList();
 final Map<int, int> contrastColorPairs = {
   for (final shade in [200, 100, 400, 700])
     for (final color in Colors.accents)
-      color[shade]!.value: Color(color[shade]!.value).toContrast.value,
+      color[shade]!.toARGB32():
+          Color(color[shade]!.toARGB32()).toContrast.toARGB32(),
 };
 
 Color getSecondaryColor(int color) {

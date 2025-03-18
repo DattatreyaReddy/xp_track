@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,134 +10,52 @@ part of 'page_filter.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageFilter<Key extends FilterEnum> {
-  Key get key => throw _privateConstructorUsedError;
-  List<PageFilterOption<Key, dynamic>> get options =>
-      throw _privateConstructorUsedError;
-  List<Key>? get dependentKeys => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        radio,
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        checkbox,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PageFilterRadio<Key> value) radio,
-    required TResult Function(PageFilterCheckbox<Key> value) checkbox,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PageFilterRadio<Key> value)? radio,
-    TResult? Function(PageFilterCheckbox<Key> value)? checkbox,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PageFilterRadio<Key> value)? radio,
-    TResult Function(PageFilterCheckbox<Key> value)? checkbox,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Key get key;
+  List<PageFilterOption<Key, dynamic>> get options;
+  List<Key>? get dependentKeys;
 
   /// Create a copy of PageFilter
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PageFilterCopyWith<Key, PageFilter<Key>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PageFilterCopyWith<Key extends FilterEnum, $Res> {
-  factory $PageFilterCopyWith(
-          PageFilter<Key> value, $Res Function(PageFilter<Key>) then) =
-      _$PageFilterCopyWithImpl<Key, $Res, PageFilter<Key>>;
-  @useResult
-  $Res call(
-      {Key key,
-      List<PageFilterOption<Key, dynamic>> options,
-      List<Key>? dependentKeys});
-}
-
-/// @nodoc
-class _$PageFilterCopyWithImpl<Key extends FilterEnum, $Res,
-    $Val extends PageFilter<Key>> implements $PageFilterCopyWith<Key, $Res> {
-  _$PageFilterCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PageFilter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PageFilterCopyWith<Key, PageFilter<Key>> get copyWith =>
+      _$PageFilterCopyWithImpl<Key, PageFilter<Key>>(
+          this as PageFilter<Key>, _$identity);
+
   @override
-  $Res call({
-    Object? key = null,
-    Object? options = null,
-    Object? dependentKeys = freezed,
-  }) {
-    return _then(_value.copyWith(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as Key,
-      options: null == options
-          ? _value.options
-          : options // ignore: cast_nullable_to_non_nullable
-              as List<PageFilterOption<Key, dynamic>>,
-      dependentKeys: freezed == dependentKeys
-          ? _value.dependentKeys
-          : dependentKeys // ignore: cast_nullable_to_non_nullable
-              as List<Key>?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PageFilter<Key> &&
+            const DeepCollectionEquality().equals(other.key, key) &&
+            const DeepCollectionEquality().equals(other.options, options) &&
+            const DeepCollectionEquality()
+                .equals(other.dependentKeys, dependentKeys));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(options),
+      const DeepCollectionEquality().hash(dependentKeys));
+
+  @override
+  String toString() {
+    return 'PageFilter<$Key>(key: $key, options: $options, dependentKeys: $dependentKeys)';
   }
 }
 
 /// @nodoc
-abstract class _$$PageFilterRadioImplCopyWith<Key extends FilterEnum, $Res>
-    implements $PageFilterCopyWith<Key, $Res> {
-  factory _$$PageFilterRadioImplCopyWith(_$PageFilterRadioImpl<Key> value,
-          $Res Function(_$PageFilterRadioImpl<Key>) then) =
-      __$$PageFilterRadioImplCopyWithImpl<Key, $Res>;
-  @override
+abstract mixin class $PageFilterCopyWith<Key extends FilterEnum, $Res> {
+  factory $PageFilterCopyWith(
+          PageFilter<Key> value, $Res Function(PageFilter<Key>) _then) =
+      _$PageFilterCopyWithImpl;
   @useResult
   $Res call(
       {Key key,
@@ -145,12 +64,12 @@ abstract class _$$PageFilterRadioImplCopyWith<Key extends FilterEnum, $Res>
 }
 
 /// @nodoc
-class __$$PageFilterRadioImplCopyWithImpl<Key extends FilterEnum, $Res>
-    extends _$PageFilterCopyWithImpl<Key, $Res, _$PageFilterRadioImpl<Key>>
-    implements _$$PageFilterRadioImplCopyWith<Key, $Res> {
-  __$$PageFilterRadioImplCopyWithImpl(_$PageFilterRadioImpl<Key> _value,
-      $Res Function(_$PageFilterRadioImpl<Key>) _then)
-      : super(_value, _then);
+class _$PageFilterCopyWithImpl<Key extends FilterEnum, $Res>
+    implements $PageFilterCopyWith<Key, $Res> {
+  _$PageFilterCopyWithImpl(this._self, this._then);
+
+  final PageFilter<Key> _self;
+  final $Res Function(PageFilter<Key>) _then;
 
   /// Create a copy of PageFilter
   /// with the given fields replaced by the non-null parameter values.
@@ -161,17 +80,17 @@ class __$$PageFilterRadioImplCopyWithImpl<Key extends FilterEnum, $Res>
     Object? options = null,
     Object? dependentKeys = freezed,
   }) {
-    return _then(_$PageFilterRadioImpl<Key>(
+    return _then(_self.copyWith(
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as Key,
       options: null == options
-          ? _value._options
+          ? _self.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PageFilterOption<Key, dynamic>>,
       dependentKeys: freezed == dependentKeys
-          ? _value._dependentKeys
+          ? _self.dependentKeys
           : dependentKeys // ignore: cast_nullable_to_non_nullable
               as List<Key>?,
     ));
@@ -180,9 +99,8 @@ class __$$PageFilterRadioImplCopyWithImpl<Key extends FilterEnum, $Res>
 
 /// @nodoc
 
-class _$PageFilterRadioImpl<Key extends FilterEnum>
-    implements PageFilterRadio<Key> {
-  _$PageFilterRadioImpl(
+class PageFilterRadio<Key extends FilterEnum> implements PageFilter<Key> {
+  PageFilterRadio(
       {required this.key,
       required final List<PageFilterOption<Key, dynamic>> options,
       final List<Key>? dependentKeys})
@@ -210,16 +128,20 @@ class _$PageFilterRadioImpl<Key extends FilterEnum>
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'PageFilter<$Key>.radio(key: $key, options: $options, dependentKeys: $dependentKeys)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PageFilterRadioCopyWith<Key, PageFilterRadio<Key>> get copyWith =>
+      _$PageFilterRadioCopyWithImpl<Key, PageFilterRadio<Key>>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PageFilterRadioImpl<Key> &&
+            other is PageFilterRadio<Key> &&
             const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
             const DeepCollectionEquality()
@@ -233,123 +155,18 @@ class _$PageFilterRadioImpl<Key extends FilterEnum>
       const DeepCollectionEquality().hash(_options),
       const DeepCollectionEquality().hash(_dependentKeys));
 
-  /// Create a copy of PageFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$PageFilterRadioImplCopyWith<Key, _$PageFilterRadioImpl<Key>>
-      get copyWith =>
-          __$$PageFilterRadioImplCopyWithImpl<Key, _$PageFilterRadioImpl<Key>>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        radio,
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        checkbox,
-  }) {
-    return radio(key, options, dependentKeys);
+  String toString() {
+    return 'PageFilter<$Key>.radio(key: $key, options: $options, dependentKeys: $dependentKeys)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-  }) {
-    return radio?.call(key, options, dependentKeys);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-    required TResult orElse(),
-  }) {
-    if (radio != null) {
-      return radio(key, options, dependentKeys);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PageFilterRadio<Key> value) radio,
-    required TResult Function(PageFilterCheckbox<Key> value) checkbox,
-  }) {
-    return radio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PageFilterRadio<Key> value)? radio,
-    TResult? Function(PageFilterCheckbox<Key> value)? checkbox,
-  }) {
-    return radio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PageFilterRadio<Key> value)? radio,
-    TResult Function(PageFilterCheckbox<Key> value)? checkbox,
-    required TResult orElse(),
-  }) {
-    if (radio != null) {
-      return radio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PageFilterRadio<Key extends FilterEnum>
-    implements PageFilter<Key> {
-  factory PageFilterRadio(
-      {required final Key key,
-      required final List<PageFilterOption<Key, dynamic>> options,
-      final List<Key>? dependentKeys}) = _$PageFilterRadioImpl<Key>;
-
-  @override
-  Key get key;
-  @override
-  List<PageFilterOption<Key, dynamic>> get options;
-  @override
-  List<Key>? get dependentKeys;
-
-  /// Create a copy of PageFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PageFilterRadioImplCopyWith<Key, _$PageFilterRadioImpl<Key>>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PageFilterCheckboxImplCopyWith<Key extends FilterEnum, $Res>
+abstract mixin class $PageFilterRadioCopyWith<Key extends FilterEnum, $Res>
     implements $PageFilterCopyWith<Key, $Res> {
-  factory _$$PageFilterCheckboxImplCopyWith(_$PageFilterCheckboxImpl<Key> value,
-          $Res Function(_$PageFilterCheckboxImpl<Key>) then) =
-      __$$PageFilterCheckboxImplCopyWithImpl<Key, $Res>;
+  factory $PageFilterRadioCopyWith(PageFilterRadio<Key> value,
+          $Res Function(PageFilterRadio<Key>) _then) =
+      _$PageFilterRadioCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -359,33 +176,33 @@ abstract class _$$PageFilterCheckboxImplCopyWith<Key extends FilterEnum, $Res>
 }
 
 /// @nodoc
-class __$$PageFilterCheckboxImplCopyWithImpl<Key extends FilterEnum, $Res>
-    extends _$PageFilterCopyWithImpl<Key, $Res, _$PageFilterCheckboxImpl<Key>>
-    implements _$$PageFilterCheckboxImplCopyWith<Key, $Res> {
-  __$$PageFilterCheckboxImplCopyWithImpl(_$PageFilterCheckboxImpl<Key> _value,
-      $Res Function(_$PageFilterCheckboxImpl<Key>) _then)
-      : super(_value, _then);
+class _$PageFilterRadioCopyWithImpl<Key extends FilterEnum, $Res>
+    implements $PageFilterRadioCopyWith<Key, $Res> {
+  _$PageFilterRadioCopyWithImpl(this._self, this._then);
+
+  final PageFilterRadio<Key> _self;
+  final $Res Function(PageFilterRadio<Key>) _then;
 
   /// Create a copy of PageFilter
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? key = null,
     Object? options = null,
     Object? dependentKeys = freezed,
   }) {
-    return _then(_$PageFilterCheckboxImpl<Key>(
+    return _then(PageFilterRadio<Key>(
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as Key,
       options: null == options
-          ? _value._options
+          ? _self._options
           : options // ignore: cast_nullable_to_non_nullable
               as List<PageFilterOption<Key, dynamic>>,
       dependentKeys: freezed == dependentKeys
-          ? _value._dependentKeys
+          ? _self._dependentKeys
           : dependentKeys // ignore: cast_nullable_to_non_nullable
               as List<Key>?,
     ));
@@ -394,9 +211,8 @@ class __$$PageFilterCheckboxImplCopyWithImpl<Key extends FilterEnum, $Res>
 
 /// @nodoc
 
-class _$PageFilterCheckboxImpl<Key extends FilterEnum>
-    implements PageFilterCheckbox<Key> {
-  _$PageFilterCheckboxImpl(
+class PageFilterCheckbox<Key extends FilterEnum> implements PageFilter<Key> {
+  PageFilterCheckbox(
       {required this.key,
       required final List<PageFilterOption<Key, dynamic>> options,
       final List<Key>? dependentKeys})
@@ -423,16 +239,20 @@ class _$PageFilterCheckboxImpl<Key extends FilterEnum>
     return EqualUnmodifiableListView(value);
   }
 
+  /// Create a copy of PageFilter
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'PageFilter<$Key>.checkbox(key: $key, options: $options, dependentKeys: $dependentKeys)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PageFilterCheckboxCopyWith<Key, PageFilterCheckbox<Key>> get copyWith =>
+      _$PageFilterCheckboxCopyWithImpl<Key, PageFilterCheckbox<Key>>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PageFilterCheckboxImpl<Key> &&
+            other is PageFilterCheckbox<Key> &&
             const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other._options, _options) &&
             const DeepCollectionEquality()
@@ -446,112 +266,58 @@ class _$PageFilterCheckboxImpl<Key extends FilterEnum>
       const DeepCollectionEquality().hash(_options),
       const DeepCollectionEquality().hash(_dependentKeys));
 
+  @override
+  String toString() {
+    return 'PageFilter<$Key>.checkbox(key: $key, options: $options, dependentKeys: $dependentKeys)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PageFilterCheckboxCopyWith<Key extends FilterEnum, $Res>
+    implements $PageFilterCopyWith<Key, $Res> {
+  factory $PageFilterCheckboxCopyWith(PageFilterCheckbox<Key> value,
+          $Res Function(PageFilterCheckbox<Key>) _then) =
+      _$PageFilterCheckboxCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {Key key,
+      List<PageFilterOption<Key, dynamic>> options,
+      List<Key>? dependentKeys});
+}
+
+/// @nodoc
+class _$PageFilterCheckboxCopyWithImpl<Key extends FilterEnum, $Res>
+    implements $PageFilterCheckboxCopyWith<Key, $Res> {
+  _$PageFilterCheckboxCopyWithImpl(this._self, this._then);
+
+  final PageFilterCheckbox<Key> _self;
+  final $Res Function(PageFilterCheckbox<Key>) _then;
+
   /// Create a copy of PageFilter
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PageFilterCheckboxImplCopyWith<Key, _$PageFilterCheckboxImpl<Key>>
-      get copyWith => __$$PageFilterCheckboxImplCopyWithImpl<Key,
-          _$PageFilterCheckboxImpl<Key>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        radio,
-    required TResult Function(
-            Key key,
-            List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)
-        checkbox,
+  $Res call({
+    Object? key = null,
+    Object? options = null,
+    Object? dependentKeys = freezed,
   }) {
-    return checkbox(key, options, dependentKeys);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult? Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-  }) {
-    return checkbox?.call(key, options, dependentKeys);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        radio,
-    TResult Function(Key key, List<PageFilterOption<Key, dynamic>> options,
-            List<Key>? dependentKeys)?
-        checkbox,
-    required TResult orElse(),
-  }) {
-    if (checkbox != null) {
-      return checkbox(key, options, dependentKeys);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PageFilterRadio<Key> value) radio,
-    required TResult Function(PageFilterCheckbox<Key> value) checkbox,
-  }) {
-    return checkbox(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PageFilterRadio<Key> value)? radio,
-    TResult? Function(PageFilterCheckbox<Key> value)? checkbox,
-  }) {
-    return checkbox?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PageFilterRadio<Key> value)? radio,
-    TResult Function(PageFilterCheckbox<Key> value)? checkbox,
-    required TResult orElse(),
-  }) {
-    if (checkbox != null) {
-      return checkbox(this);
-    }
-    return orElse();
+    return _then(PageFilterCheckbox<Key>(
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as Key,
+      options: null == options
+          ? _self._options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<PageFilterOption<Key, dynamic>>,
+      dependentKeys: freezed == dependentKeys
+          ? _self._dependentKeys
+          : dependentKeys // ignore: cast_nullable_to_non_nullable
+              as List<Key>?,
+    ));
   }
 }
 
-abstract class PageFilterCheckbox<Key extends FilterEnum>
-    implements PageFilter<Key> {
-  factory PageFilterCheckbox(
-      {required final Key key,
-      required final List<PageFilterOption<Key, dynamic>> options,
-      final List<Key>? dependentKeys}) = _$PageFilterCheckboxImpl<Key>;
-
-  @override
-  Key get key;
-  @override
-  List<PageFilterOption<Key, dynamic>> get options;
-  @override
-  List<Key>? get dependentKeys;
-
-  /// Create a copy of PageFilter
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PageFilterCheckboxImplCopyWith<Key, _$PageFilterCheckboxImpl<Key>>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

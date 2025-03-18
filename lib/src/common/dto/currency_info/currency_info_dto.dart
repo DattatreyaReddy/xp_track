@@ -7,12 +7,18 @@ part 'currency_info_dto.freezed.dart';
 // "symbol": "₴",
 @freezed
 class CurrencyInfoDto with _$CurrencyInfoDto {
-  const CurrencyInfoDto._();
-  factory CurrencyInfoDto({
-    required String code,
-    required String name,
-    required String symbol,
-  }) = _CurrencyInfoDto;
+  @override
+  final String code;
+  @override
+  final String name;
+  @override
+  final String symbol;
+
+  CurrencyInfoDto({
+    required this.code,
+    required this.name,
+    required this.symbol,
+  });
 
   String get toCurrencyString => '$name($symbol)';
 }

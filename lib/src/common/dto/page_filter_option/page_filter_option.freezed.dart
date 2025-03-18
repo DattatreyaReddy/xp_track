@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,147 +10,28 @@ part of 'page_filter_option.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PageFilterOption<T extends FilterEnum, U> {
-  U get value => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
-  bool Function(Map<FilterEnum, dynamic>)? get showOption =>
-      throw _privateConstructorUsedError;
+  U get value;
+  String get label;
+  bool Function(Map<FilterEnum, dynamic>)? get showOption;
 
   /// Create a copy of PageFilterOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $PageFilterOptionCopyWith<T, U, PageFilterOption<T, U>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PageFilterOptionCopyWith<T extends FilterEnum, U, $Res> {
-  factory $PageFilterOptionCopyWith(PageFilterOption<T, U> value,
-          $Res Function(PageFilterOption<T, U>) then) =
-      _$PageFilterOptionCopyWithImpl<T, U, $Res, PageFilterOption<T, U>>;
-  @useResult
-  $Res call(
-      {U value,
-      String label,
-      bool Function(Map<FilterEnum, dynamic>)? showOption});
-}
-
-/// @nodoc
-class _$PageFilterOptionCopyWithImpl<T extends FilterEnum, U, $Res,
-        $Val extends PageFilterOption<T, U>>
-    implements $PageFilterOptionCopyWith<T, U, $Res> {
-  _$PageFilterOptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PageFilterOption
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = freezed,
-    Object? label = null,
-    Object? showOption = freezed,
-  }) {
-    return _then(_value.copyWith(
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as U,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      showOption: freezed == showOption
-          ? _value.showOption
-          : showOption // ignore: cast_nullable_to_non_nullable
-              as bool Function(Map<FilterEnum, dynamic>)?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PageFilterOptionImplCopyWith<T extends FilterEnum, U, $Res>
-    implements $PageFilterOptionCopyWith<T, U, $Res> {
-  factory _$$PageFilterOptionImplCopyWith(_$PageFilterOptionImpl<T, U> value,
-          $Res Function(_$PageFilterOptionImpl<T, U>) then) =
-      __$$PageFilterOptionImplCopyWithImpl<T, U, $Res>;
-  @override
-  @useResult
-  $Res call(
-      {U value,
-      String label,
-      bool Function(Map<FilterEnum, dynamic>)? showOption});
-}
-
-/// @nodoc
-class __$$PageFilterOptionImplCopyWithImpl<T extends FilterEnum, U, $Res>
-    extends _$PageFilterOptionCopyWithImpl<T, U, $Res,
-        _$PageFilterOptionImpl<T, U>>
-    implements _$$PageFilterOptionImplCopyWith<T, U, $Res> {
-  __$$PageFilterOptionImplCopyWithImpl(_$PageFilterOptionImpl<T, U> _value,
-      $Res Function(_$PageFilterOptionImpl<T, U>) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PageFilterOption
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = freezed,
-    Object? label = null,
-    Object? showOption = freezed,
-  }) {
-    return _then(_$PageFilterOptionImpl<T, U>(
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as U,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      showOption: freezed == showOption
-          ? _value.showOption
-          : showOption // ignore: cast_nullable_to_non_nullable
-              as bool Function(Map<FilterEnum, dynamic>)?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$PageFilterOptionImpl<T extends FilterEnum, U>
-    implements _PageFilterOption<T, U> {
-  _$PageFilterOptionImpl(
-      {required this.value, required this.label, this.showOption});
-
-  @override
-  final U value;
-  @override
-  final String label;
-  @override
-  final bool Function(Map<FilterEnum, dynamic>)? showOption;
-
-  @override
-  String toString() {
-    return 'PageFilterOption<$T, $U>(value: $value, label: $label, showOption: $showOption)';
-  }
+      _$PageFilterOptionCopyWithImpl<T, U, PageFilterOption<T, U>>(
+          this as PageFilterOption<T, U>, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PageFilterOptionImpl<T, U> &&
+            other is PageFilterOption<T, U> &&
             const DeepCollectionEquality().equals(other.value, value) &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.showOption, showOption) ||
@@ -160,35 +42,56 @@ class _$PageFilterOptionImpl<T extends FilterEnum, U>
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(value), label, showOption);
 
+  @override
+  String toString() {
+    return 'PageFilterOption<$T, $U>(value: $value, label: $label, showOption: $showOption)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PageFilterOptionCopyWith<T extends FilterEnum, U, $Res> {
+  factory $PageFilterOptionCopyWith(PageFilterOption<T, U> value,
+          $Res Function(PageFilterOption<T, U>) _then) =
+      _$PageFilterOptionCopyWithImpl;
+  @useResult
+  $Res call(
+      {U value,
+      String label,
+      bool Function(Map<FilterEnum, dynamic>)? showOption});
+}
+
+/// @nodoc
+class _$PageFilterOptionCopyWithImpl<T extends FilterEnum, U, $Res>
+    implements $PageFilterOptionCopyWith<T, U, $Res> {
+  _$PageFilterOptionCopyWithImpl(this._self, this._then);
+
+  final PageFilterOption<T, U> _self;
+  final $Res Function(PageFilterOption<T, U>) _then;
+
   /// Create a copy of PageFilterOption
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$PageFilterOptionImplCopyWith<T, U, _$PageFilterOptionImpl<T, U>>
-      get copyWith => __$$PageFilterOptionImplCopyWithImpl<T, U,
-          _$PageFilterOptionImpl<T, U>>(this, _$identity);
+  @override
+  $Res call({
+    Object? value = freezed,
+    Object? label = null,
+    Object? showOption = freezed,
+  }) {
+    return _then(PageFilterOption(
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as U,
+      label: null == label
+          ? _self.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      showOption: freezed == showOption
+          ? _self.showOption
+          : showOption // ignore: cast_nullable_to_non_nullable
+              as bool Function(Map<FilterEnum, dynamic>)?,
+    ));
+  }
 }
 
-abstract class _PageFilterOption<T extends FilterEnum, U>
-    implements PageFilterOption<T, U> {
-  factory _PageFilterOption(
-          {required final U value,
-          required final String label,
-          final bool Function(Map<FilterEnum, dynamic>)? showOption}) =
-      _$PageFilterOptionImpl<T, U>;
-
-  @override
-  U get value;
-  @override
-  String get label;
-  @override
-  bool Function(Map<FilterEnum, dynamic>)? get showOption;
-
-  /// Create a copy of PageFilterOption
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PageFilterOptionImplCopyWith<T, U, _$PageFilterOptionImpl<T, U>>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

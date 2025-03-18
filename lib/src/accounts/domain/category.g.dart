@@ -6,8 +6,7 @@ part of 'category.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
-    _$CategoryImpl(
+Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as String? ?? kDbKeyHolder,
       dateCreated: const EpochDateTimeConverter()
           .fromJson((json['dateCreated'] as num).toInt()),
@@ -19,8 +18,7 @@ _$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
       includeInBalance: json['includeInBalance'] as bool,
     );
 
-Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'id': instance.id,
       'dateCreated':
           const EpochDateTimeConverter().toJson(instance.dateCreated),

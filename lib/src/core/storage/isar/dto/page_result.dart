@@ -6,10 +6,22 @@ part 'page_result.freezed.dart';
 
 @freezed
 class PageResult<T> with _$PageResult<T> {
-  factory PageResult({
-    required List<T> content,
-    required PageRequest pageRequest,
-    required int totalPages,
-    required int totalElements,
-  }) = _PageResult;
+  @override
+  final List<T> content;
+
+  @override
+  final PageRequest pageRequest;
+
+  @override
+  final int totalPages;
+
+  @override
+  final int totalElements;
+
+  PageResult({
+    required this.content,
+    required this.pageRequest,
+    required this.totalPages,
+    required this.totalElements,
+  });
 }
